@@ -41,6 +41,7 @@ En la página del index, aparecerán todos los libros que hay, además de un bot
   - MySQL
 - Servidor 
   - XAMPP
+** A parte, se va a usar el framework laravel.
 
 El enlace a la base de datos, se hace mediante mysqli, aquí muestro un ejemplo real de conexión con una base de datos mediante php:
 
