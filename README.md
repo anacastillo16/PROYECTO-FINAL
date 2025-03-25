@@ -28,8 +28,6 @@ En la página del index, aparecerán todos los libros que hay, además de un bot
 | **Favoritos**           | Muestra los libros que deseas leer, permitiendo agregar todos los que quieras.                                            |
 
 
-  
-
 ### Lenguajes
 - FrontEnd 
   - HTML
@@ -37,32 +35,8 @@ En la página del index, aparecerán todos los libros que hay, además de un bot
   - JS
 - BackEnd 
   -  PHP
+      - De framework se va a usar laravel
 - Base de datos 
   - MySQL
 - Servidor 
   - XAMPP
-
-    
-** A parte, se va a usar el framework laravel.
-
-El enlace a la base de datos, se hace mediante mysqli, aquí muestro un ejemplo real de conexión con una base de datos mediante php:
-
-La conexión a la base de datos se realiza a través de PHP usando `mysqli`. Aquí tienes un ejemplo real de código para establecer la conexión:
-
-```php
-<?php
-function conexionBD() {
-    $host = 'localhost';
-    $basededatos = 'biblioteca_online';
-    $usuario = 'root';
-    $password = '';
-
-    $conexion = new mysqli($host, $usuario, $password, $basededatos);
-
-    if ($conexion->connect_error) {
-        die('Error en la conexión: ' . $conexion->connect_error);
-    }
-
-    return $conexion;
-}
-?>
