@@ -24,7 +24,11 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
-            return redirect($user->rol == 'admin' ? '/admin' :'/libros' );
+            if ($user->rol === 'admin') {
+                return view('indexTRABAJADOR', compact('user'));
+            } else {
+                return view('indexUSUARIO', compact('user'));
+            }
         }
 
         return back()->withErrors([

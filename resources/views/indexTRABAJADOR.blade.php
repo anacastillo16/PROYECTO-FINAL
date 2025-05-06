@@ -8,14 +8,16 @@
 <body>
     <header>
         <h1>Biblioteca</h1>
+        <h3>Index Trabajador</h3>
     </header>
     <main>
+        <h2>Bienvenido {{ $user->name }}</h2>
         <h2>Libros</h2>
         <ul>
-            @foreach($books as $book)
-                <li>{{ $book->title }}</li>
-            @endforeach
+            
         </ul>
+
+        <a href="">Modificar libro: </a>
         
     </main>
 </body>
