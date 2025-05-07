@@ -14,7 +14,7 @@ class BookController extends Controller
     public function index()
     {
         $books = Book::all();
-        return view('libros', compact('books'));
+        return view('indexTRABAJADOR', compact('books'));
     }
 
     /**
@@ -38,7 +38,8 @@ class BookController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $book = Book::findOrFail($id);
+        return view('booksDetails', compact('book'));
     }
 
     /**

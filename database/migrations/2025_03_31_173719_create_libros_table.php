@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('isbn');
             $table->string('title');
-            $table->foreignId('author_id')->references('id')->on('autors')->onDelete('cascade');
+            $table->string('image');
+            $table->foreignId('autor_id')->references('id')->on('autors')->onDelete('cascade');
             $table->string('description');
 
             $table->timestamps();

@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    @vite('resources/css/app.css')
 </head>
 <body class="bg-gray-100 flex items-center justify-center h-screen">
     <form method="POST" action="{{ route('login') }}" class="bg-white p-6 rounded shadow-md w-80">

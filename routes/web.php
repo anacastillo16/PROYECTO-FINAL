@@ -18,14 +18,7 @@ Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('regi
 Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
 
 //INDEX
-Route::get('/indexTRABAJADOR', function () {
-    $user = Auth::user();
-    if ($user && $user->rol === 'admin') {
-        return view('indexTRABAJADOR', compact('user'));
-    }
-    return redirect('/login'); // Redirige al login si no es admin
-});
-
+Route::get('/indexTRABAJADOR', [BookController::class, 'index'])->name('index.trabajador');
 Route::get('/indexUSUARIO', function () {
     $user = Auth::user();
     if ($user && $user->rol === 'user') {
@@ -33,3 +26,6 @@ Route::get('/indexUSUARIO', function () {
     }
     return redirect('/login'); // Redirige al login si no es usuario
 });
+
+//BOOKS
+Route::resource('/books', BookController::class);

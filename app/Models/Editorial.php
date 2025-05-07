@@ -8,7 +8,7 @@ class Editorial extends Model
 {
     protected $fillable = ['name', 'address'];
 
-    public function authors()
+    public function autors()
     {
         return $this->hasMany(Author::class);
     }

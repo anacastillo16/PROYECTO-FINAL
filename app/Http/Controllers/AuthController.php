@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Book;
 
 class AuthController extends Controller
 {
@@ -24,10 +25,11 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
+            $books = Book::all(); 
             if ($user->rol === 'admin') {
-                return view('indexTRABAJADOR', compact('user'));
+                return view('indexTRABAJADOR', compact('user', 'books'));
             } else {
-                return view('indexUSUARIO', compact('user'));
+                return view('indexUSUARIO', compact('user', 'books'));
             }
         }
 
