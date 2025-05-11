@@ -9,6 +9,7 @@
     <header>
         <h1>Biblioteca</h1>
         <h3>Index Trabajador</h3>
+        <a href="{{ route('books.create') }}">Crear libro </a>
     </header>
     <main>
         <h2>Bienvenido {{ Auth::user()->name }}</h2>
@@ -16,14 +17,11 @@
         <ul>
             @foreach ($books as $book)
                 <li>
-                    <strong>{{ $book->title }}</strong> - {{ $book->autor }} 
+                    <strong>{{ $book->title }}</strong> - {{ $book->autor->name }} {{ $book->autor->lastname }} <br>
                     <a href="{{ route('books.show', $book->id) }}">Ver detalles</a>
                 </li>
             @endforeach
         </ul>
-
-        <a href="">Crear libro: </a>
-        
     </main>
 </body>
 </html>

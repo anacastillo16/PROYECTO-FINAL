@@ -28,4 +28,9 @@ Route::get('/indexUSUARIO', function () {
 });
 
 //BOOKS
-Route::resource('/books', BookController::class);
+Route::get('/booksDetails/{id}', [BookController::class, 'show'])->name('books.show');
+Route::get('/crearLibro', [BookController::class, 'create'])->name('books.create');
+Route::get('/editarLibro/{id}', [BookController::class, 'edit'])->name('books.edit');
+Route::put('/editarLibro/{id}', [BookController::class, 'update'])->name('books.update');
+Route::post('/libros', [BookController::class, 'store'])->name('books.store');
+Route::delete('/booksDetails/{id}', [BookController::class, 'destroy'])->name('books.destroy');

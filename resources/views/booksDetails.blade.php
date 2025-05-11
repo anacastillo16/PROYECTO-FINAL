@@ -8,6 +8,7 @@
 <body>
     <header>
         <h1>Biblioteca</h1>
+        <a href="{{ route('index.trabajador') }}">Index</a>
     </header>
     <main>
         <h2>Detalles del libro:  {{ $book->title }}</h2>
@@ -15,6 +16,14 @@
         <p>{{ $book->autor->name }} {{ $book->autor->lastname }}</p>
         <p>{{ $book->description }}</p>
         <img src="{{ $book->image }}" alt="Imagen libro" width="200" height="300">
+
+
+        <a href=" {{ route('books.edit', $book->id) }}">Modificar</a>
+        <form action="{{ route('books.destroy', $book->id) }}" method="post">
+            @csrf
+            @method('delete')
+            <input type="submit" value="Borrar" class="delete">
+        </form>
     </main>
 </body>
 </html>

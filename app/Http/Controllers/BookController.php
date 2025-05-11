@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Book;
+use App\Models\Author;
 
 class BookController extends Controller
 {
@@ -14,7 +15,8 @@ class BookController extends Controller
     public function index()
     {
         $books = Book::all();
-        return view('indexTRABAJADOR', compact('books'));
+        $user = auth()->user();
+        return view('indexTRABAJADOR', compact('books', 'user'));
     }
 
     /**
@@ -22,7 +24,8 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        $autores = Author::all();
+        return view('crearLibro', compact('autores'));
     }
 
     /**
@@ -30,7 +33,17 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'isbn' => 'required',
+            'title' => 'required',
+            'autor_id' => 'required',
+            'image' => 'required',
+            'description' => 'required'
+        ]);
+
+        Book::create($request->all());
+
+        return redirect()->route('index.trabajador')->with('success', 'Libro creado.');
     }
 
     /**
@@ -47,7 +60,9 @@ class BookController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $book = Book::findOrFail($id);
+        $autores = Author::all();
+        return view('editarLibro', compact('book', 'autores'));
     }
 
     /**
@@ -55,7 +70,9 @@ class BookController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $book = Book::findOrFail($id);
+        $book->update($request->all());
+        return redirect()->route('books.show', $book->id)->with('success', 'Libro actualizado.');
     }
 
     /**
@@ -63,6 +80,8 @@ class BookController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $book = Book::findOrFail($id);
+        $book->delete();
+        return redirect()->route('index.trabajador')->with('success', 'Libro eliminado.');
     }
 }

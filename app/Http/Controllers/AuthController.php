@@ -27,7 +27,7 @@ class AuthController extends Controller
             $user = Auth::user();
             $books = Book::all(); 
             if ($user->rol === 'admin') {
-                return view('indexTRABAJADOR', compact('user', 'books'));
+                return redirect()->route('index.trabajador');
             } else {
                 return view('indexUSUARIO', compact('user', 'books'));
             }
