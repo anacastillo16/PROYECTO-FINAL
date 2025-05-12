@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\AuthorController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -34,3 +35,12 @@ Route::get('/editarLibro/{id}', [BookController::class, 'edit'])->name('books.ed
 Route::put('/editarLibro/{id}', [BookController::class, 'update'])->name('books.update');
 Route::post('/libros', [BookController::class, 'store'])->name('books.store');
 Route::delete('/booksDetails/{id}', [BookController::class, 'destroy'])->name('books.destroy');
+
+//AUTHORS
+Route::get('/autores', [AuthorController::class, 'index'])->name('autors.index');
+Route::get('/autorDetails/{id}', [AuthorController::class, 'show'])->name('autors.show');
+Route::get('/crearAutor', [AuthorController::class, 'create'])->name('autors.create');
+Route::get('/editarAutor/{id}', [AuthorController::class, 'edit'])->name('autors.edit');
+Route::put('/editarAutor/{id}', [AuthorController::class, 'update'])->name('autors.update');
+Route::post('/autores', [AuthorController::class, 'store'])->name('autors.store');
+Route::delete('/verAutores/{id}', [AuthorController::class, 'destroy'])->name('autors.destroy');

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Editorial;
 use Illuminate\Http\Request;
+use App\Models\Author;
 
 class AuthorController extends Controller
 {
@@ -12,7 +14,8 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        //
+        $autors = Author::all();
+        return view('autors.verAutores', compact('autors'));
     }
 
     /**
@@ -20,7 +23,8 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        //
+        $editoriales = Editorial::all();
+        return view('autors.crearAutor', compact('editoriales'));
     }
 
     /**
@@ -28,7 +32,18 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'dni' => 'required',
+            'name' => 'required',
+            'lastname' => 'required',
+            'phone' => 'required',
+            'email' => 'required',
+            'editorial_id' => 'required'
+        ]);
+
+        Author::create($request->all());
+
+        return redirect()->route('autors.index')->with('success', 'Autor creado.');
     }
 
     /**
@@ -36,7 +51,8 @@ class AuthorController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $autor = Author::findOrFail($id);
+        return view('autors.autorDetails', compact('autor'));
     }
 
     /**
@@ -44,7 +60,9 @@ class AuthorController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $autor = Author::findOrFail($id);
+        $editoriales = Editorial::all();
+        return view('autors.editarAutor', compact('autor', 'editoriales'));
     }
 
     /**
@@ -52,7 +70,9 @@ class AuthorController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $autor = Author::findOrFail($id);
+        $autor->update($request->all());
+        return redirect()->route('autors.show', $autor->id)->with('success', 'Autor actualizado.');
     }
 
     /**
@@ -60,6 +80,8 @@ class AuthorController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $autor = Author::findOrFail($id);
+        $autor->delete();
+        return redirect()->route('autors.index')->with('success', 'Autor eliminado.');
     }
 }
