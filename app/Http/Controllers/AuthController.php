@@ -29,7 +29,7 @@ class AuthController extends Controller
             if ($user->rol === 'admin') {
                 return redirect()->route('index.trabajador');
             } else {
-                return view('indexUSUARIO', compact('user', 'books'));
+                return view('index.indexUSUARIO', compact('user', 'books'));
             }
         }
 
