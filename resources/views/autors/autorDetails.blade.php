@@ -18,7 +18,7 @@
         <p>{{ $autor->lastname }}</p>
         <p>{{ $autor->phone }}</p>
         <p>{{ $autor->email }}</p>
-        <p>{{ $autor->editorial->name }}</p>
+        <a href="{{ route('editorials.show', $autor->editorial->id) }}" target="_blank">{{ $autor->editorial->name }}</a>
 
         <a href=" {{ route('autors.edit', $autor->id) }}">Modificar</a>
         <form action="{{ route('autors.destroy', $autor->id) }}" method="post">

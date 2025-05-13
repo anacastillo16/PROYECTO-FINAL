@@ -11,7 +11,7 @@
         <a href="{{ route('index.trabajador') }}">Index</a>
         <a href="{{ route('autors.index') }}">Ver autores </a>
     </header>
-    <h2>Crear nuevo libro</h2>
+    <h2>Crear nuevo autor</h2>
     <form method="POST" action="{{ route('autors.update', $autor->id) }}">
         @csrf
         @method('PUT')

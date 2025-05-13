@@ -13,7 +13,7 @@
     <main>
         <h2>Detalles del libro:  {{ $book->title }}</h2>
         <p>{{ $book->ISBN }}</p>
-        <p>{{ $book->autor->name }} {{ $book->autor->lastname }}</p>
+        <a href="{{ route('autors.show', $book->autor->id) }}" target="_blank">{{ $book->autor->name }} {{ $book->autor->lastname }}</a>
         <p>{{ $book->description }}</p>
         <img src="{{ $book->image }}" alt="Imagen libro" width="200" height="300">
 

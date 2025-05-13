@@ -12,6 +12,7 @@
         <h2>Bienvenido {{ Auth::user()->name }}</h2>
         <a href="{{ route('books.create') }}">Crear libro </a>
         <a href="{{ route('autors.index') }}">Ver autores </a>
+        <a href="{{ route('editorials.index') }}">Ver editoriales </a>
     </header>
     <main>
         <h2>Libros disponibles</h2>

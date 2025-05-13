@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Editorial;
 
 class EditorialController extends Controller
 {
@@ -12,7 +13,8 @@ class EditorialController extends Controller
      */
     public function index()
     {
-        //
+        $editorials = Editorial::all();
+        return view('editorials.verEditorials', compact('editorials'));
     }
 
     /**
@@ -20,7 +22,7 @@ class EditorialController extends Controller
      */
     public function create()
     {
-        //
+        return view('editorials.crearEditorial');
     }
 
     /**
@@ -28,7 +30,14 @@ class EditorialController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'address' => 'required'
+        ]);
+
+        Editorial::create($request->all());
+
+        return redirect()->route('editorials.index')->with('success', 'Editorial creada.');
     }
 
     /**
@@ -36,7 +45,8 @@ class EditorialController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $editorial = Editorial::findOrFail($id);
+        return view('editorials.editorialDetails', compact('editorial'));
     }
 
     /**
@@ -44,7 +54,8 @@ class EditorialController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $editorial = Editorial::findOrFail($id);
+        return view('editorials.editarEditorial', compact('editorial'));
     }
 
     /**
@@ -52,7 +63,9 @@ class EditorialController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $editorial = Editorial::findOrFail($id);
+        $editorial->update($request->all());
+        return redirect()->route('editorials.show', $editorial->id)->with('success', 'Editorial actualizada.');
     }
 
     /**
@@ -60,6 +73,8 @@ class EditorialController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $editorial = Editorial::findOrFail($id);
+        $editorial->delete();
+        return redirect()->route('editorials.index')->with('success', 'Editorial eliminada.');
     }
 }

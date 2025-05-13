@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Models\Editorial;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\EditorialController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -44,3 +46,12 @@ Route::get('/editarAutor/{id}', [AuthorController::class, 'edit'])->name('autors
 Route::put('/editarAutor/{id}', [AuthorController::class, 'update'])->name('autors.update');
 Route::post('/autores', [AuthorController::class, 'store'])->name('autors.store');
 Route::delete('/verAutores/{id}', [AuthorController::class, 'destroy'])->name('autors.destroy');
+
+//EDITORIALS
+Route::get('/editoriales', [EditorialController::class, 'index'])->name('editorials.index');
+Route::get('/editorialDetails/{id}', [EditorialController::class, 'show'])->name('editorials.show');
+Route::get('/crearEditorial', [EditorialController::class, 'create'])->name('editorials.create');
+Route::get('/editarEditorial/{id}', [EditorialController::class, 'edit'])->name('editorials.edit');
+Route::put('/editarEditorial/{id}', [EditorialController::class, 'update'])->name('editorials.update');
+Route::post('/editoriales', [EditorialController::class, 'store'])->name('editorials.store');
+Route::delete('/verEditorials/{id}', [EditorialController::class, 'destroy'])->name(name: 'editorials.destroy');
