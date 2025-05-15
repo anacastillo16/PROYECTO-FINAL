@@ -1,35 +1,40 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-</head>
-<body class="bg-gray-100 flex items-center justify-center h-screen">
-    <form method="POST" action="{{ route('login') }}" class="bg-white p-6 rounded shadow-md w-80">
+@extends('layouts.auth')
+
+@section('title', 'Iniciar sesión')
+
+@section('content')
+
+    <h1 class="text-2xl font-bold text-center">Iniciar sesión</h1>
+    @if ($errors->any())
+        <div class="mb-4 text-red-600 text-sm">
+            {{ $errors->first() }}
+        </div>
+    @endif
+    <form method="POST" action="{{ route('login') }}" class="space-y-4 bg-gray-100 p-4 rounded-md">
         @csrf
-        <h1 class="text-xl font-bold mb-4 text-center">Iniciar sesión</h1>
 
-        @if ($errors->any())
-            <div class="mb-4 text-red-600 text-sm">
-                {{ $errors->first() }}
-            </div>
-        @endif
+        <!-- Email -->
+        <div>
+            <input type="email" name="email" placeholder="Email"
+                class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                required />
 
-        <input type="email" name="email" placeholder="Email" required
-            class="w-full mb-3 p-2 border rounded" />
+        </div>
 
-        <input type="password" name="password" placeholder="Contraseña" required
-            class="w-full mb-4 p-2 border rounded" />
+        <!-- Password -->
+        <div>
+            <input type="password" name="password" placeholder="Contraseña"
+                class="w-full mt-4 border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                required />
+        </div>
 
         <button type="submit"
-            class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition">
-            Entrar
+            class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            Iniciar sesión
         </button>
-
-        <div>
-            <p>¿No tienes cuenta?</p>
-            <a href="{{ route('register') }}" class="text-blue-500 hover:underline">Regístrate</a>
-        </div>
     </form>
-</body>
-</html>
+    <div>
+        <p class="text-center text-sm mt-4">¿No tienes cuenta?</p>
+        <a href="{{ route('register') }}" class="text-blue-600 hover:underline">Regístrate</a>
+    </div>
+@endsection
