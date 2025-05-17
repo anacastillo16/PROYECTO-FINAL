@@ -4,15 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biblioteca</title>
+    @vite(['resources/js/app.js'])
 </head>
 <body>
-    <header>
-        <h1>Biblioteca</h1>
-        <h3>Index Trabajador</h3>
-        <a href="{{ route('index.trabajador') }}">Index</a> 
-        <a href="{{ route('autors.create') }}">Crear autor </a>       
-        <h2>Bienvenido {{ Auth::user()->name }}</h2>
-    </header>
+    @include('layouts.trabajador.header')
     <main>
         <h2>Autores disponibles</h2>
         <ul>
