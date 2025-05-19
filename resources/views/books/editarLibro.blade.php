@@ -1,39 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblioteca</title>
+    <title>Editar Libro</title>
+    @vite(['resources/js/app.js'])
 </head>
+
 <body>
-    <header>
-        <h1>Biblioteca</h1>
-        <a href="{{ route('index.trabajador') }}">Index</a>
-    </header>
-    <h2>Crear nuevo libro</h2>
-    <form method="POST" action="{{ route('books.update', $book->id) }}">
-        @csrf
-        @method('PUT')
-        <label for="isbn">ISBN:</label>
-        <input type="text" name="isbn" id="isbn" value="{{ $book->isbn }}" required ><br>
+    @include('layouts.trabajador.header')
 
-        <label for="title">Título:</label>
-        <input type="text" name="title" id="title" value="{{ $book->title }}" required><br>
+    <main class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow p-4">
+                    <h2 class="mb-4 text-center">Editar libro</h2>
 
-        <label for="image">URL de la portada:</label>
-        <input type="text" name="image" id="image" value="{{ $book->image }}"><br>
+                    <form method="POST" action="{{ route('books.update', $book->id) }}">
+                        @csrf
+                        @method('PUT')
 
-        <label for="autor_id">Autor:</label>
-        <select name="autor_id" id="autor_id" required>
-            @foreach($autores as $autor)
-                <option value="{{ $autor->id }}">{{ $autor->name }} {{ $autor->lastname }}</option>
-            @endforeach
-        </select><br>
+                        <div class="mb-3">
+                            <label for="isbn" class="form-label">ISBN</label>
+                            <input type="text" name="isbn" id="isbn" class="form-control" value="{{ $book->ISBN }}" required>
+                        </div>
 
-        <label for="description">Descripción:</label>
-        <textarea name="description" id="description" value="{{ $book->description }}" required></textarea><br>
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Título</label>
+                            <input type="text" name="title" id="title" class="form-control" value="{{ $book->title }}" required>
+                        </div>
 
-        <button type="submit">Modificar</button>
-    </form>
+                        <div class="mb-3">
+                            <label for="image" class="form-label">URL de la portada</label>
+                            <input type="text" name="image" id="image" class="form-control" value="{{ $book->image }}">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="autor_id" class="form-label">Autor</label>
+                            <select name="autor_id" id="autor_id" class="form-select" required>
+                                @foreach($autores as $autor)
+                                    <option value="{{ $autor->id }}" {{ $book->autor_id == $autor->id ? 'selected' : '' }}>
+                                        {{ $autor->name }} {{ $autor->lastname }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="description" class="form-label">Descripción</label>
+                            <textarea name="description" id="description" rows="5" class="form-control" required>{{ $book->description }}</textarea>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <a href="{{ route('books.show', $book->id) }}" class="btn btn-outline-secondary">Cancelar</a>
+                            <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
 </body>
+
 </html>

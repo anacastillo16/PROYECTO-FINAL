@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Book;
+use App\Models\Author;
 
 class AuthController extends Controller
 {
@@ -26,16 +27,24 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
             $books = Book::all(); 
+            $autores = Author::all();
             if ($user->rol === 'admin') {
                 return redirect()->route('index.trabajador');
             } else {
-                return view('index.indexUSUARIO', compact('user', 'books'));
+                return view('index.indexUSUARIO', compact('user', 'books', 'autores'));
             }
         }
 
         return back()->withErrors([
             'email' => 'Las credenciales son incorrectas'
         ]);
+    }
+
+    public function indexTrabajador()
+    {
+        $books = Book::all();
+        $autores = Author::all();
+        return view('indexTrabajador', compact('books', 'autores'));
     }
 
     public function showRegisterForm() {

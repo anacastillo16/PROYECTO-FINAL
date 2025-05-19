@@ -16,7 +16,8 @@ class BookController extends Controller
     {
         $books = Book::all();
         $user = auth()->user();
-        return view('index.indexTRABAJADOR', compact('books', 'user'));
+        $autores = Author::all();
+        return view('index.indexTRABAJADOR', compact('books', 'user', 'autores'));
     }
 
     /**

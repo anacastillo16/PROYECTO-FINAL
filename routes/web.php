@@ -32,7 +32,6 @@ Route::get('/indexUSUARIO', function () {
 
 //BOOKS
 Route::get('/booksDetails/{id}', [BookController::class, 'show'])->name('books.show');
-Route::get('/crearLibro', [BookController::class, 'create'])->name('books.create');
 Route::get('/editarLibro/{id}', [BookController::class, 'edit'])->name('books.edit');
 Route::put('/editarLibro/{id}', [BookController::class, 'update'])->name('books.update');
 Route::post('/libros', [BookController::class, 'store'])->name('books.store');
@@ -41,7 +40,6 @@ Route::delete('/booksDetails/{id}', [BookController::class, 'destroy'])->name('b
 //AUTHORS
 Route::get('/autores', [AuthorController::class, 'index'])->name('autors.index');
 Route::get('/autorDetails/{id}', [AuthorController::class, 'show'])->name('autors.show');
-Route::get('/crearAutor', [AuthorController::class, 'create'])->name('autors.create');
 Route::get('/editarAutor/{id}', [AuthorController::class, 'edit'])->name('autors.edit');
 Route::put('/editarAutor/{id}', [AuthorController::class, 'update'])->name('autors.update');
 Route::post('/autores', [AuthorController::class, 'store'])->name('autors.store');

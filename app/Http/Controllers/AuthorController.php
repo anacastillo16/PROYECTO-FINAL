@@ -15,7 +15,8 @@ class AuthorController extends Controller
     public function index()
     {
         $autors = Author::all();
-        return view('autors.verAutores', compact('autors'));
+        $editoriales = Editorial::all();
+        return view('autors.verAutores', compact('autors', 'editoriales'));
     }
 
     /**
