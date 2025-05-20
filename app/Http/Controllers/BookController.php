@@ -12,11 +12,20 @@ class BookController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $books = Book::all();
         $user = auth()->user();
         $autores = Author::all();
+
+        $query = Book::with('autor');
+
+        if ($request->has('search') && $request->search) {
+            $query->where('title', 'like', '%' . $request->search . '%');
+        }
+
+        $books = $query->get();
+
         return view('index.indexTRABAJADOR', compact('books', 'user', 'autores'));
     }
 

@@ -6,10 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biblioteca</title>
     @vite(['resources/js/app.js'])
+    <style>
+    body {
+        overflow-x: hidden;
+    }
+</style>
 </head>
 
 <body>
     @include('layouts.trabajador.header')
+
+    <!-- Buscador -->
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-8">
+            <form action="{{ route('index.trabajador') }}" method="GET" class="d-flex">
+                <input type="text" name="search" class="form-control" placeholder="Buscar por título...">
+                <button type="submit" class="btn btn-primary ms-2">Buscar</button>
+                <a href="{{ route('index.trabajador') }}" class="btn btn-primary ms-2">Ver libros</a>
+            </form>
+        </div>
+    </div>
 
     <main class="container my-5">
 
