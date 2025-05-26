@@ -37,7 +37,7 @@
                                 </a>
                             </p>
 
-                            <p><strong>Descripción:</strong></p>
+                            <p class="fw-bold">Descripción:</p>
                             <p>{{ $book->description }}</p>
 
                             <!-- Botones -->
@@ -52,21 +52,18 @@
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">Borrar</button>
                                 </form>
-                                <a href="{{ route('index.trabajador') }}" class="btn btn-secondary">Volver al
-                                    listado</a>
+                                <a href="{{ route('index.trabajador') }}" class="btn btn-secondary">Ver libros</a>
                             </div>
-
-
 
                             <!-- Modal -->
                             <div class="modal fade" id="modificarLibroModal" tabindex="-1"
                                 aria-labelledby="crearLibroModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-lg">
+                                <div class="modal-dialog modal-md">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="modificarLibroModal">Modificar libro</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Cerrar"></button>
+                                            aria-label="Cerrar"></button>
                                         </div>
                                         <div class="modal-body">
                                             <form method="POST" action="{{ route('books.update', $book->id) }}">
