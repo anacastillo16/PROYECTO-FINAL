@@ -38,7 +38,6 @@ Route::delete('/booksDetails/{id}', [BookController::class, 'destroy'])->name('b
 //AUTHORS
 Route::get('/autores', [AuthorController::class, 'index'])->name('autors.index');
 Route::get('/autorDetails/{id}', [AuthorController::class, 'show'])->name('autors.show');
-Route::get('/editarAutor/{id}', [AuthorController::class, 'edit'])->name('autors.edit');
 Route::put('/editarAutor/{id}', [AuthorController::class, 'update'])->name('autors.update');
 Route::post('/autores', [AuthorController::class, 'store'])->name('autors.store');
 Route::delete('/verAutores/{id}', [AuthorController::class, 'destroy'])->name('autors.destroy');
