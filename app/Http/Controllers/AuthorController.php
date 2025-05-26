@@ -23,7 +23,7 @@ class AuthorController extends Controller
             $query->where('name', 'like', '%' . $request->search . '%')
                   ->orWhere('lastname', 'like', '%' . $request->search . '%');
         }
-        
+
         $autors = $query->get();
 
         return view('autors.verAutores', compact('autors', 'editoriales'));
@@ -63,7 +63,8 @@ class AuthorController extends Controller
     public function show(string $id)
     {
         $autor = Author::findOrFail($id);
-        return view('autors.autorDetails', compact('autor'));
+        $editoriales = Editorial::all();
+        return view('autors.autorDetails', compact('autor', 'editoriales'));
     }
 
     /**
