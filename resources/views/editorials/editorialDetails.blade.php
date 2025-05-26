@@ -11,8 +11,6 @@
 <body>
     @include('layouts.trabajador.header')
 
-    
-
     <main class="container my-5">
         <h2 class="mb-4 text-center">Detalle de la editorial</h2>
         

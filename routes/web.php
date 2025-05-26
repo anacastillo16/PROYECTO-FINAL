@@ -46,7 +46,6 @@ Route::delete('/verAutores/{id}', [AuthorController::class, 'destroy'])->name('a
 //EDITORIALS
 Route::get('/editoriales', [EditorialController::class, 'index'])->name('editorials.index');
 Route::get('/editorialDetails/{id}', [EditorialController::class, 'show'])->name('editorials.show');
-Route::get('/editarEditorial/{id}', [EditorialController::class, 'edit'])->name('editorials.edit');
 Route::put('/editarEditorial/{id}', [EditorialController::class, 'update'])->name('editorials.update');
 Route::post('/editoriales', [EditorialController::class, 'store'])->name('editorials.store');
 Route::delete('/verEditorials/{id}', [EditorialController::class, 'destroy'])->name(name: 'editorials.destroy');

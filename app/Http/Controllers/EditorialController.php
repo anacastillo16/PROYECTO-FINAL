@@ -11,9 +11,17 @@ class EditorialController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $editorials = Editorial::all();
+
+        $query = Editorial::query();
+
+        if ($request->has('search') && $request->search) {
+            $query->where('name', 'like', '%' . $request->search . '%');
+        }
+        $editorials = $query->get();
+        
         return view('editorials.verEditorials', compact('editorials'));
     }
 
