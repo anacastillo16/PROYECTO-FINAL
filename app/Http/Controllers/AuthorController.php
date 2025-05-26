@@ -12,10 +12,20 @@ class AuthorController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $autors = Author::all();
         $editoriales = Editorial::all();
+
+        $query = Author::with('editorial');
+
+        if ($request->has('search') && $request->search) {
+            $query->where('name', 'like', '%' . $request->search . '%')
+                  ->orWhere('lastname', 'like', '%' . $request->search . '%');
+        }
+        
+        $autors = $query->get();
+
         return view('autors.verAutores', compact('autors', 'editoriales'));
     }
 
