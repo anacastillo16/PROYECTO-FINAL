@@ -26,16 +26,7 @@ class AuthorController extends Controller
 
         $autors = $query->get();
 
-        return view('autors.verAutores', compact('autors', 'editoriales'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        $editoriales = Editorial::all();
-        return view('autors.crearAutor', compact('editoriales'));
+        return view('trabajador.autors.verAutores', compact('autors', 'editoriales'));
     }
 
     /**
@@ -64,18 +55,9 @@ class AuthorController extends Controller
     {
         $autor = Author::findOrFail($id);
         $editoriales = Editorial::all();
-        return view('autors.autorDetails', compact('autor', 'editoriales'));
+        return view('trabajador.autors.autorDetails', compact('autor', 'editoriales'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        $autor = Author::findOrFail($id);
-        $editoriales = Editorial::all();
-        return view('autors.editarAutor', compact('autor', 'editoriales'));
-    }
 
     /**
      * Update the specified resource in storage.

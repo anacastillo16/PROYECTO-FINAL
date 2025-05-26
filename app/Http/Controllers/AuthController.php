@@ -44,7 +44,7 @@ class AuthController extends Controller
     {
         $books = Book::all();
         $autores = Author::all();
-        return view('indexTrabajador', compact('books', 'autores'));
+        return view('trabajador.indexTrabajador', compact('books', 'autores'));
     }
 
     public function showRegisterForm() {

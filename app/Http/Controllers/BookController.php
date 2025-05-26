@@ -26,16 +26,7 @@ class BookController extends Controller
 
         $books = $query->get();
 
-        return view('index.indexTRABAJADOR', compact('books', 'user', 'autores'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        $autores = Author::all();
-        return view('books.crearLibro', compact('autores'));
+        return view('trabajador.indexTRABAJADOR', compact('books', 'user', 'autores'));
     }
 
     /**
@@ -63,17 +54,7 @@ class BookController extends Controller
     {
         $book = Book::findOrFail($id);
         $autores = Author::all();
-        return view('books.booksDetails', compact('book', 'autores'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        $book = Book::findOrFail($id);
-        $autores = Author::all();
-        return view('books.editarLibro', compact('book', 'autores'));
+        return view('trabajador.books.booksDetails', compact('book', 'autores'));
     }
 
     /**

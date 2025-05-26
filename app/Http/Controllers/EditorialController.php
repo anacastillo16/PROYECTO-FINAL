@@ -22,15 +22,7 @@ class EditorialController extends Controller
         }
         $editorials = $query->get();
         
-        return view('editorials.verEditorials', compact('editorials'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('editorials.crearEditorial');
+        return view('trabajador.editorials.verEditorials', compact('editorials'));
     }
 
     /**
@@ -54,16 +46,7 @@ class EditorialController extends Controller
     public function show(string $id)
     {
         $editorial = Editorial::findOrFail($id);
-        return view('editorials.editorialDetails', compact('editorial'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        $editorial = Editorial::findOrFail($id);
-        return view('editorials.editarEditorial', compact('editorial'));
+        return view('trabajador.editorials.editorialDetails', compact('editorial'));
     }
 
     /**

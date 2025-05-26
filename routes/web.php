@@ -6,10 +6,6 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\EditorialController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 //LOGIN
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);

@@ -15,9 +15,9 @@ class UserController extends Controller
     {
         $user = auth()->user();
         if ($user->rol == 'admin') {
-            return view('index.indexTRABAJADOR', compact('user'));
+            return view('trabajador.indexTRABAJADOR', compact('user'));
         } else {
-            return view('index.indexUSUARIO', compact('user'));
+            return view('usuario.indexUSUARIO', compact('user'));
         }
     }
 
