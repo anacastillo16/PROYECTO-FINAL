@@ -58,8 +58,10 @@
 
                                                 <div class="mb-3">
                                                     <label for="name" class="form-label">Nombre</label>
-                                                    <input type="text" name="name" id="name" class="form-control"
-                                                        value="{{ $editorial->name }}" required />
+                                                    <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ $editorial->name }}" required />
+                                                    @error('name')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
 
                                                 <div class="mb-3">
@@ -85,6 +87,18 @@
             </div>
         </div>
     </main>
+
+    @if ($errors->any())
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var modalEl = document.getElementById('modificarEditorialModal');
+            if (modalEl) {
+                var modal = new bootstrap.Modal(modalEl);
+                modal.show();
+            }
+        });
+    </script>
+    @endif
 </body>
 
 </html>

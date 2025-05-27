@@ -19,6 +19,11 @@
                 <button type="submit" class="btn btn-primary ms-2">Buscar</button>
                 <a href="{{ route('editorials.index') }}" class="btn btn-primary ms-2">Ver editoriales</a>
             </form>
+            @if ($noResults)
+                <div class="alert alert-warning text-center mt-3" role="alert">
+                    No se encontró ninguna editorial con ese nombre.
+                </div>
+            @endif
         </div>
     </div>
 
@@ -46,7 +51,10 @@
 
                             <div class="mb-3">
                                 <label for="name" class="form-label">Nombre</label>
-                                <input type="text" name="name" id="name" class="form-control" required>
+                                <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" required>
+                                @error('name')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="mb-3">
@@ -81,6 +89,18 @@
         </div>
 
     </main>
+
+    @if ($errors->any())
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var modalEl = document.getElementById('crearEditorialModal');
+            if (modalEl) {
+                var modal = new bootstrap.Modal(modalEl);
+                modal.show();
+            }
+        });
+    </script>
+    @endif
 </body>
 
 </html>

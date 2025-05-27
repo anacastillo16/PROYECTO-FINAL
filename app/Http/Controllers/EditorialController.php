@@ -13,16 +13,22 @@ class EditorialController extends Controller
      */
     public function index(Request $request)
     {
-        $editorials = Editorial::all();
+        $searchTerm = $request->search ?? null;
 
         $query = Editorial::query();
 
-        if ($request->has('search') && $request->search) {
-            $query->where('name', 'like', '%' . $request->search . '%');
+        if ($searchTerm) {
+            $query->where('name', 'like', '%' . $searchTerm . '%');
         }
+
         $editorials = $query->get();
-        
-        return view('trabajador.editorials.verEditorials', compact('editorials'));
+
+        $noResults = false;
+        if ($searchTerm && $editorials->isEmpty()) {
+            $noResults = true;
+        }
+
+        return view('trabajador.editorials.verEditorials', compact('editorials', 'searchTerm', 'noResults'));
     }
 
     /**
@@ -31,8 +37,11 @@ class EditorialController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|unique:editorials,name',
             'address' => 'required'
+        ],
+        [
+            'name.unique' => 'El nombre de la editorial ya está en uso.'
         ]);
 
         Editorial::create($request->all());
@@ -55,6 +64,15 @@ class EditorialController extends Controller
     public function update(Request $request, string $id)
     {
         $editorial = Editorial::findOrFail($id);
+
+        $request->validate([
+            'name' => 'required|unique:editorials,name,' . $editorial->id,
+            'address' => 'required'
+        ],
+        [
+            'name.unique' => 'El nombre de la editorial ya está en uso.'
+        ]);
+
         $editorial->update($request->all());
         return redirect()->route('editorials.show', $editorial->id)->with('success', 'Editorial actualizada.');
     }
