@@ -72,8 +72,10 @@
 
                                                 <div class="mb-3">
                                                     <label for="isbn" class="form-label">ISBN</label>
-                                                    <input type="text" name="isbn" id="isbn" class="form-control"
-                                                        value="{{ $book->isbn }}" required>
+                                                    <input type="text" name="isbn" id="isbn" class="form-control  @error('isbn') is-invalid @enderror" value="{{ $book->isbn }}" required>
+                                                    @error('isbn')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
 
                                                 <div class="mb-3">
@@ -123,6 +125,17 @@
             </div>
         </div>
     </main>
+    @if ($errors->any())
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var modalEl = document.getElementById('modificarLibroModal');
+            if (modalEl) {
+                var modal = new bootstrap.Modal(modalEl);
+                modal.show();
+            }
+        });
+    </script>
+    @endif
 </body>
 
 </html>

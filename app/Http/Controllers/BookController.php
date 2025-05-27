@@ -20,13 +20,20 @@ class BookController extends Controller
 
         $query = Book::with('autor');
 
-        if ($request->has('search') && $request->search) {
-            $query->where('title', 'like', '%' . $request->search . '%');
+        $searchTerm = $request->search ?? null;
+
+        if ($searchTerm) {
+        $query->where('title', 'like', '%' . $searchTerm . '%');
         }
 
         $books = $query->get();
 
-        return view('trabajador.indexTRABAJADOR', compact('books', 'user', 'autores'));
+        $noResults = false;
+        if ($searchTerm && $books->isEmpty()) {
+            $noResults = true;
+        }
+
+        return view('trabajador.indexTRABAJADOR', compact('books', 'user', 'autores', 'noResults', 'searchTerm'));
     }
 
     /**
@@ -35,11 +42,14 @@ class BookController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'isbn' => 'required',
+            'isbn' => 'required|unique:books,isbn',
             'title' => 'required',
             'autor_id' => 'required',
             'image' => 'required',
             'description' => 'required'
+        ],
+[
+            'isbn.unique' => 'El ISBN ya está en uso.',
         ]);
 
         Book::create($request->all());
@@ -63,6 +73,18 @@ class BookController extends Controller
     public function update(Request $request, string $id)
     {
         $book = Book::findOrFail($id);
+        
+        $request->validate([
+            'isbn' => 'required|unique:books,isbn,' . $book->id,
+            'title' => 'required',
+            'autor_id' => 'required',
+            'image' => 'required',
+            'description' => 'required'
+        ],
+[
+            'isbn.unique' => 'El ISBN ya está en uso.',
+        ]);
+        
         $book->update($request->all());
         return redirect()->route('books.show', $book->id)->with('success', 'Libro actualizado.');
     }
