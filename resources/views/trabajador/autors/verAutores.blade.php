@@ -17,8 +17,13 @@
             <form action="{{ route('autors.index') }}" method="GET" class="d-flex">
                 <input type="text" name="search" class="form-control" placeholder="Buscar por nombre...">
                 <button type="submit" class="btn btn-primary ms-2">Buscar</button>
-                <a href="{{ route('autors.index') }}" class="btn btn-primary ms-2">Ver editoriales</a>
+                <a href="{{ route('autors.index') }}" class="btn btn-primary ms-2">Ver autores</a>
             </form>
+             @if ($noResults)
+                <div class="alert alert-warning text-center mt-3" role="alert">
+                    No se encontró ningún autor con ese nombre.
+                </div>
+            @endif
         </div>
     </div>
 
@@ -46,37 +51,57 @@
 
                             <div class="mb-3">
                                 <label for="dni" class="form-label">DNI</label>
-                                <input type="text" name="dni" id="dni" class="form-control" required>
+                                <input type="text" name="dni" id="dni" class="form-control @error('dni') is-invalid @enderror" value="{{ old('dni') }}" required>
+                                @error('dni')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="mb-3">
                                 <label for="name" class="form-label">Nombre</label>
-                                <input type="text" name="name" id="name" class="form-control" required>
+                                <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" required>
+                                @error('name')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="mb-3">
                                 <label for="lastname" class="form-label">Apellidos</label>
-                                <input type="text" name="lastname" id="lastname" class="form-control">
+                                <input type="text" name="lastname" id="lastname" class="form-control @error('lastname') is-invalid @enderror" value="{{ old('lastname') }}" required>
+                                @error('lastname')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="mb-3">
                                 <label for="phone" class="form-label">Teléfono</label>
-                                <input type="text" name="phone" id="phone" class="form-control">
+                                <input type="phone" name="phone" id="phone" class="form-control @error('phone') is-invalid @enderror" value="{{ old('phone') }}" required>
+                                @error('phone')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" name="email" id="email" class="form-control">
+                                <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" required>
+                                @error('email')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="mb-4">
                                 <label for="editorial_id" class="form-label">Editorial</label>
-                                <select name="editorial_id" id="editorial_id" class="form-select" required>
-                                    <option value="" disabled selected>Selecciona una editorial</option>
+                                <select name="editorial_id" id="editorial_id" class="form-select @error('editorial_id') is-invalid @enderror" required>
+                                    <option value="" disabled {{ old('editorial_id') ? '' : 'selected' }}>Selecciona una editorial</option>
                                     @foreach($editoriales as $editorial)
-                                        <option value="{{ $editorial->id }}">{{ $editorial->name }}</option>
+                                    <option value="{{ $editorial->id }}" {{ old('editorial_id') == $editorial->id ? 'selected' : '' }}>
+                                        {{ $editorial->name }}
+                                    </option>
                                     @endforeach
                                 </select>
+                                @error('editorial_id')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="text-end">
@@ -106,6 +131,18 @@
         </div>
 
     </main>
+
+    @if ($errors->any())
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var modalEl = document.getElementById('crearAutorModal');
+            if (modalEl) {
+                var modal = new bootstrap.Modal(modalEl);
+                modal.show();
+            }
+        });
+    </script>
+    @endif
 </body>
 
 </html>

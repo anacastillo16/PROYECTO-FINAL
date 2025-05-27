@@ -19,14 +19,23 @@ class AuthorController extends Controller
 
         $query = Author::with('editorial');
 
-        if ($request->has('search') && $request->search) {
-            $query->where('name', 'like', '%' . $request->search . '%')
-                  ->orWhere('lastname', 'like', '%' . $request->search . '%');
+        $searchTerm = $request->search ?? null;
+
+        if ($searchTerm) {
+            $query->where('name', 'like', '%' . $searchTerm . '%')
+                  ->orWhere('lastname', 'like', '%' . $searchTerm . '%');
+        }
+
+        $books = $query->get();
+
+        $noResults = false;
+        if ($searchTerm && $books->isEmpty()) {
+            $noResults = true;
         }
 
         $autors = $query->get();
 
-        return view('trabajador.autors.verAutores', compact('autors', 'editoriales'));
+        return view('trabajador.autors.verAutores', compact('autors', 'editoriales', 'noResults', 'searchTerm'));
     }
 
     /**
@@ -35,12 +44,17 @@ class AuthorController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'dni' => 'required',
+            'dni' => 'required|unique:autors,dni',
             'name' => 'required',
             'lastname' => 'required',
-            'phone' => 'required',
-            'email' => 'required',
+            'phone' => 'required|unique:autors,phone',
+            'email' => 'required|unique:autors,email',
             'editorial_id' => 'required'
+        ],
+[
+            'dni.unique' => 'El DNI ya está en uso.',
+            'phone.unique' => 'El teléfono ya está en uso.',
+            'email.unique' => 'El correo electrónico ya está en uso.'
         ]);
 
         Author::create($request->all());
@@ -65,7 +79,22 @@ class AuthorController extends Controller
     public function update(Request $request, string $id)
     {
         $autor = Author::findOrFail($id);
+        $request->validate([
+            'dni' => 'required|unique:autors,dni,' . $autor->id,
+            'name' => 'required',
+            'lastname' => 'required',
+            'phone' => 'required|unique:autors,phone,' . $autor->id,
+            'email' => 'required|unique:autors,email,' . $autor->id,
+            'editorial_id' => 'required'
+        ],
+[
+            'dni.unique' => 'El DNI ya está en uso.',
+            'phone.unique' => 'El teléfono ya está en uso.',
+            'email.unique' => 'El correo electrónico ya está en uso.'
+        ]);
+
         $autor->update($request->all());
+        
         return redirect()->route('autors.show', $autor->id)->with('success', 'Autor actualizado.');
     }
 

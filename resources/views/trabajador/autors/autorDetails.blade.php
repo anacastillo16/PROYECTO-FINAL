@@ -61,10 +61,14 @@
                                         <div class="modal-body">
                                             <form method="POST" action="{{ route('autors.update', $autor->id) }}">
                                                 @csrf
+                                                @method('PUT')
 
                                                 <div class="mb-3">
                                                     <label for="dni" class="form-label">DNI</label>
-                                                    <input type="text" name="dni" id="dni" class="form-control" value="{{ $autor->dni }}" required>
+                                                    <input type="text" name="dni" id="dni" class="form-control @error('dni') is-invalid @enderror" value="{{ $autor->dni }}" required>
+                                                    @error('dni')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
 
                                                 <div class="mb-3">
@@ -79,12 +83,18 @@
 
                                                 <div class="mb-3">
                                                     <label for="phone" class="form-label">Teléfono</label>
-                                                    <input type="text" name="phone" id="phone" class="form-control" value="{{ $autor->phone }}" required>
+                                                    <input type="phone" name="phone" id="phone" class="form-control @error('phone') is-invalid @enderror" value="{{ $autor->phone }}" required>
+                                                    @error('phone')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
 
                                                 <div class="mb-3">
                                                     <label for="email" class="form-label">Email</label>
-                                                    <input type="email" name="email" id="email" class="form-control" value="{{ $autor->email }}"  required>
+                                                    <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" value="{{ $autor->email }}" required>
+                                                    @error('email')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
 
                                                 <div class="mb-4">
@@ -113,5 +123,17 @@
             </div>
         </div>
     </main>
+
+    @if ($errors->any())
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var modalEl = document.getElementById('modificarAutorModal');
+            if (modalEl) {
+                var modal = new bootstrap.Modal(modalEl);
+                modal.show();
+            }
+        });
+    </script>
+    @endif
 </body>
 </html>
