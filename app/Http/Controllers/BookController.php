@@ -23,7 +23,7 @@ class BookController extends Controller
         $searchTerm = $request->search ?? null;
 
         if ($searchTerm) {
-        $query->where('title', 'like', '%' . $searchTerm . '%');
+            $query->where('title', 'like', '%' . $searchTerm . '%');
         }
 
         $books = $query->get();
