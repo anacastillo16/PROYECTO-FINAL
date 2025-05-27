@@ -18,9 +18,25 @@ class AuthController extends Controller
 
     public function login(Request $request) {
         $request->validate([
-            'email' => 'required|email',
+            'email' => 'required|email', 
             'password' => 'required'
         ]);
+
+        $user = User::where('email', $request->email)->first();
+
+        if (! $user) {
+            // No existe el email
+            return back()->withErrors([
+                'email' => 'No existe ninguna cuenta con ese correo electrónico.',
+            ])->withInput(['email' => $request->email]);
+        }
+
+        if (! Hash::check($request->password, $user->password)) {
+            // Contraseña incorrecta
+            return back()->withErrors([
+                'password' => 'La contraseña no es correcta.',
+            ])->withInput(['email' => $request->email]);
+        }
 
         $credentials = $request->only('email','password');
 

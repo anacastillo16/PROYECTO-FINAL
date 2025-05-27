@@ -5,23 +5,27 @@
 @section('content')
     <h2 class="mb-4 text-center fw-bold text-primary">Iniciar Sesión</h2>
 
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            {{ $errors->first() }}
-        </div>
-    @endif
-
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
         <div class="mb-3">
-            <input type="email" name="email" placeholder="Email" required
-                class="form-control" autofocus />
+            <input type="email" name="email" placeholder="Email" value="{{ old('email') }}" required
+                class="form-control @error('email') is-invalid @enderror" autofocus />
+                @error('email')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
         </div>
 
         <div class="mb-4">
             <input type="password" name="password" placeholder="Contraseña" required
-                class="form-control" />
+                class="form-control @error('password') is-invalid @enderror" autofocus />
+                @error('password')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
         </div>
 
         <button type="submit" class="btn btn-primary w-100">Iniciar sesión</button>
