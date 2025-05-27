@@ -72,26 +72,28 @@ class AuthController extends Controller
         return redirect('/login');
     }
 
-    public function register(Request $request)
-{
-    // Validación de los datos del formulario
-    $request->validate([
-        'name' => 'required',
-        'lastname' => 'required',
-        'email' => 'required|email',
-        'password' => 'required',
-        'rol' => 'required'
-    ]); 
+    public function register(Request $request){   
+        $request->validate([
+            'name' => 'required',
+            'lastname' => 'required',
+            'email' => 'required|email|unique:user,email',
+            'password' => 'required|confirmed|min:6',
+            'rol' => 'required'
+        ], 
+[
+            'email.unique' => 'Ya existe una cuenta con ese correo electrónico.',
+            'password.min' => 'La contraseña debe tener al menos 6 caracteres.',
+            'password.confirmed' => 'Las contraseñas no coinciden.'
+        ]); 
 
-    // Crear el nuevo usuario
-    User::create([
-        'name' => $request->name,
-        'lastname' => $request->lastname,
-        'email' => $request->email,
-        'password' => Hash::make($request->password), 
-        'rol' => 'user', 
-    ]);
+        User::create([
+            'name' => $request->name,
+            'lastname' => $request->lastname,
+            'email' => $request->email,
+            'password' => Hash::make($request->password), 
+            'rol' => 'user', 
+        ]);
 
-    return redirect()->route('login')->with('success', 'Cuenta creada exitosamente. Ahora puedes iniciar sesión.');
-}
+        return redirect()->route('login')->with('success', 'Cuenta creada exitosamente. Ahora puedes iniciar sesión.');
+    }
 }
