@@ -19,13 +19,17 @@
         </div>
 
         <div class="mb-4">
-            <input type="password" name="password" placeholder="Contraseña" required
-                class="form-control @error('password') is-invalid @enderror" autofocus />
-                @error('password')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
+            <div class="input-group">
+                <input type="password" name="password" id="password" placeholder="Contraseña" required
+                class="form-control @error('password') is-invalid @enderror" required >
+                <button class="btn btn-outline-secondary toggle-password" type="button" data-target="password">
+                    <i class="bi bi-eye"></i>
+                </button>
+            </div>
+            
+            @error('password')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
 
         <button type="submit" class="btn btn-primary w-100">Iniciar sesión</button>
