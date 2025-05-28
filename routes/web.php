@@ -1,10 +1,14 @@
 <?php
 
+use App\Http\Controllers\PublicIndexController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\EditorialController;
+
+//INDEX PUBLIC
+Route::get('/', [PublicIndexController::class, 'index'])->name('index.public');
 
 //LOGIN
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
