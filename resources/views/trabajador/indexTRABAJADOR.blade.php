@@ -125,6 +125,11 @@
             </div>
             @endforeach
         </div>
+        
+        <!-- Links de paginación -->
+        <div class="d-flex justify-content-center mt-4">
+            {{ $books->links() }}
+        </div>
     </main>
 
     @if ($errors->any())

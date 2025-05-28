@@ -25,13 +25,10 @@ class BookController extends Controller
         if ($searchTerm) {
             $query->where('title', 'like', '%' . $searchTerm . '%');
         }
+        
+        $books = $query->paginate(10)->withQueryString();
 
-        $books = $query->get();
-
-        $noResults = false;
-        if ($searchTerm && $books->isEmpty()) {
-            $noResults = true;
-        }
+        $noResults = $searchTerm && $books->isEmpty();
 
         return view('trabajador.indexTRABAJADOR', compact('books', 'user', 'autores', 'noResults', 'searchTerm'));
     }
