@@ -47,7 +47,7 @@ class AuthController extends Controller
             if ($user->rol === 'admin') {
                 return redirect()->route('index.trabajador');
             } else {
-                return view('index.indexUSUARIO', compact('user', 'books', 'autores'));
+                return redirect()->route('index.usuario');
             }
         }
 
@@ -61,6 +61,13 @@ class AuthController extends Controller
         $books = Book::all();
         $autores = Author::all();
         return view('trabajador.indexTrabajador', compact('books', 'autores'));
+    }
+
+    public function indexUsuario()
+    {
+        $books = Book::all();
+        $autores = Author::all();
+        return view('usuario.indexUsuario', compact('books', 'autores'));
     }
 
     public function showRegisterForm() {

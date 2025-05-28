@@ -5,20 +5,28 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Book;
 
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $user = auth()->user();
-        if ($user->rol == 'admin') {
-            return view('trabajador.indexTRABAJADOR', compact('user'));
-        } else {
-            return view('usuario.indexUSUARIO', compact('user'));
+        $search = $request->input('search');
+
+        $query = Book::query();
+
+        if ($search) {
+            $query->where('title', 'LIKE', '%' . $search . '%');
         }
+
+        $books = $query->paginate(12)->withQueryString();
+
+        $noResults = $books->isEmpty() && $search;
+
+        return view('usuario.indexUSUARIO', compact('books', 'noResults'));
     }
 
     /**
