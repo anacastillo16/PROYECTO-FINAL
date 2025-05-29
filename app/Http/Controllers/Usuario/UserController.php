@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Usuario;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User;
 use App\Models\Book;
 
 class UserController extends Controller
@@ -16,10 +15,18 @@ class UserController extends Controller
     {
         $search = $request->input('search');
 
-        $query = Book::query();
+        $query = Book::with(['autor.editorial']);
 
         if ($search) {
-            $query->where('title', 'LIKE', '%' . $search . '%');
+            $query->where('title', 'LIKE', '%' . $search . '%')
+                ->orWhereHas('autor', function ($q) use ($search) {
+                    $q->where('name', 'LIKE', '%' . $search . '%')
+                        ->orWhere('lastname', 'LIKE', '%' . $search . '%')
+                        ->orWhereRaw("CONCAT(name, ' ', lastname) LIKE ?", ["%$search%"]);
+                })
+                ->orWhereHas('autor.editorial', function ($q2) use ($search) {
+                    $q2->where('name', 'LIKE', '%' . $search . '%');
+                });
         }
 
         $books = $query->paginate(12)->withQueryString();
@@ -28,6 +35,7 @@ class UserController extends Controller
 
         return view('usuario.indexUSUARIO', compact('books', 'noResults'));
     }
+
 
     /**
      * Show the form for creating a new resource.

@@ -17,14 +17,14 @@
     <div class="row justify-content-center mt-4">
         <div class="col-md-8">
             <form action="{{ route('index.usuario') }}" method="GET" class="d-flex">
-                <input type="text" name="search" class="form-control" placeholder="Buscar por título..." />
+                <input type="text" name="search" class="form-control" placeholder="Buscar por título, autor o editorial" />
                 <button type="submit" class="btn btn-primary ms-2">Buscar</button>
-                <a href="{{ route('index.trabajador') }}" class="btn btn-primary ms-2">Ver libros</a>
+                <a href="{{ route('index.usuario') }}" class="btn btn-primary ms-2">Ver libros</a>
             </form>
             
             @if ($noResults)
                 <div class="alert alert-warning text-center mt-3" role="alert">
-                    No se encontró ningún libro con ese título.
+                    No se encontró ningún libro.
                 </div>
             @endif
         </div>

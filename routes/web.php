@@ -1,12 +1,12 @@
 <?php
 
 use App\Http\Controllers\PublicIndexController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\BookController;
-use App\Http\Controllers\AuthorController;
-use App\Http\Controllers\EditorialController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\Trabajador\BookController;
+use App\Http\Controllers\Trabajador\AuthorController;
+use App\Http\Controllers\Trabajador\EditorialController;
+use App\Http\Controllers\Usuario\UserController;
+use Illuminate\Support\Facades\Route;
 
 // RUTAS PÚBLICAS
 //INDEX PUBLIC
@@ -49,5 +49,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/editorialDetails/{id}', [EditorialController::class, 'show'])->name('editorials.show');
     Route::put('/editarEditorial/{id}', [EditorialController::class, 'update'])->name('editorials.update');
     Route::post('/editoriales', [EditorialController::class, 'store'])->name('editorials.store');
-    Route::delete('/verEditorials/{id}', [EditorialController::class, 'destroy'])->name(name: 'editorials.destroy');
+    Route::delete('/verEditorials/{id}', [EditorialController::class, 'destroy'])->name( 'editorials.destroy');
 });
