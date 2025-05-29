@@ -29,7 +29,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/indexTRABAJADOR', [BookController::class, 'index'])->name('index.trabajador');
 
     //INDEX USUARIO
-   Route::get('/indexUSUARIO', [UserController::class, 'index'])->name('index.usuario');
+    Route::get('/indexUSUARIO', [UserController::class, 'index'])->name('index.usuario');
 
     //BOOKS
     Route::get('/booksDetails/{id}', [BookController::class, 'show'])->name('books.show');
