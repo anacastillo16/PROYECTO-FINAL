@@ -8,12 +8,12 @@
 
         <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarTrabajador">
             <ul class="navbar-nav me-auto mb-0 d-flex flex-row gap-3">
-                <!-- <li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link text-white" href="{{ route('usuario.autors.index') }}">Autores</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="{{ route('usuario.editorials.index') }}">Editoriales</a>
-                </li> -->
+                </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="#">Favoritos</a>
                 </li>

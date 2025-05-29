@@ -50,8 +50,8 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('trabajador/verAutores/{id}', [AuthorController::class, 'destroy'])->name('trabajador.autors.destroy');
 
     //USUARIO AUTHORS
-    Route::get('usuario/autores', [UserController::class, 'index'])->name('usuario.autors.index');
-    Route::get('usuario/autorDetails/{id}', [UserController::class, 'show'])->name('usuario.autors.show');
+    Route::get('usuario/autores', [UserController::class, 'showAutors'])->name('usuario.autors.index');
+    Route::get('usuario/autorDetails/{id}', [UserController::class, 'showAutor'])->name('usuario.autors.show');
 
     //EDITORIALS
     Route::get('trabajador/editoriales', [EditorialController::class, 'index'])->name('trabajador.editorials.index');

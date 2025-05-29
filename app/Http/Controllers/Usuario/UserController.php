@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Usuario;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Book;
+use App\Models\Author;
+use App\Models\Editorial;
 
 class UserController extends Controller
 {
@@ -42,6 +44,34 @@ class UserController extends Controller
     public function showBook($id){
         $book = Book::with(['autor.editorial'])->findOrFail($id);
         return view('usuario.books.booksDetails', compact('book'));
+    }
+
+    /**
+     * Show the list of autors.
+     */
+    public function showAutors(Request $request){
+        $search = $request->input('search');
+
+        $query = Author::with('editorial');
+
+        if ($search) {
+            $query->where('name', 'LIKE', '%' . $search . '%')
+                ->orWhere('lastname', 'LIKE', '%' . $search . '%')
+                ->orWhereRaw("CONCAT(name, ' ', lastname) LIKE ?", ["%$search%"]);
+        }
+
+        $autors = $query->get();
+
+        $noResults = $autors->isEmpty() && $search;
+        return view('usuario.autors.verAutores', compact('autors', 'noResults'));
+    }
+
+    /**
+     * Show the details of a specific autor.
+     */
+    public function showAutor($id){
+        $autor = Author::findOrFail($id);
+        return view('usuario.autors.autorDetails', compact('autor'));
     }
 
 
