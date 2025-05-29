@@ -32,22 +32,22 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/indexUSUARIO', [UserController::class, 'index'])->name('index.usuario');
 
     //BOOKS
-    Route::get('/booksDetails/{id}', [BookController::class, 'show'])->name('books.show');
-    Route::put('/editarLibro/{id}', [BookController::class, 'update'])->name('books.update');
-    Route::post('/libros', [BookController::class, 'store'])->name('books.store');
-    Route::delete('/booksDetails/{id}', [BookController::class, 'destroy'])->name('books.destroy');
+    Route::get('trabajador//booksDetails/{id}', [BookController::class, 'show'])->name('trabajador.books.show');
+    Route::put('trabajador/editarLibro/{id}', [BookController::class, 'update'])->name('trabajador.books.update');
+    Route::post('trabajador/libros', [BookController::class, 'store'])->name('trabajador.books.store');
+    Route::delete('trabajador/booksDetails/{id}', [BookController::class, 'destroy'])->name('trabajador.books.destroy');
 
     //AUTHORS
-    Route::get('/autores', [AuthorController::class, 'index'])->name('autors.index');
-    Route::get('/autorDetails/{id}', [AuthorController::class, 'show'])->name('autors.show');
-    Route::put('/editarAutor/{id}', [AuthorController::class, 'update'])->name('autors.update');
-    Route::post('/autores', [AuthorController::class, 'store'])->name('autors.store');
-    Route::delete('/verAutores/{id}', [AuthorController::class, 'destroy'])->name('autors.destroy');
+    Route::get('trabajador/autores', [AuthorController::class, 'index'])->name('trabajador.autors.index');
+    Route::get('trabajador/autorDetails/{id}', [AuthorController::class, 'show'])->name('trabajador.autors.show');
+    Route::put('trabajador/editarAutor/{id}', [AuthorController::class, 'update'])->name('trabajador.autors.update');
+    Route::post('trabajador/autores', [AuthorController::class, 'store'])->name('trabajador.autors.store');
+    Route::delete('trabajador/verAutores/{id}', [AuthorController::class, 'destroy'])->name('trabajador.autors.destroy');
 
     //EDITORIALS
-    Route::get('/editoriales', [EditorialController::class, 'index'])->name('editorials.index');
-    Route::get('/editorialDetails/{id}', [EditorialController::class, 'show'])->name('editorials.show');
-    Route::put('/editarEditorial/{id}', [EditorialController::class, 'update'])->name('editorials.update');
-    Route::post('/editoriales', [EditorialController::class, 'store'])->name('editorials.store');
-    Route::delete('/verEditorials/{id}', [EditorialController::class, 'destroy'])->name( 'editorials.destroy');
+    Route::get('trabajador/editoriales', [EditorialController::class, 'index'])->name('trabajador.editorials.index');
+    Route::get('trabajador/editorialDetails/{id}', [EditorialController::class, 'show'])->name('trabajador.editorials.show');
+    Route::put('trabajador/editarEditorial/{id}', [EditorialController::class, 'update'])->name('trabajador.editorials.update');
+    Route::post('trabajador/editoriales', [EditorialController::class, 'store'])->name('trabajador.editorials.store');
+    Route::delete('trabajador/verEditorials/{id}', [EditorialController::class, 'destroy'])->name( 'trabajador.editorials.destroy');
 });

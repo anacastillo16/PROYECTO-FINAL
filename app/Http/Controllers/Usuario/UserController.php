@@ -29,7 +29,7 @@ class UserController extends Controller
                 });
         }
 
-        $books = $query->paginate(12)->withQueryString();
+        $books = $query->paginate(8)->withQueryString();
 
         $noResults = $books->isEmpty() && $search;
 

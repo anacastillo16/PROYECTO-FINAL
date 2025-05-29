@@ -26,7 +26,7 @@ class BookController extends Controller
             $query->where('title', 'like', '%' . $searchTerm . '%');
         }
         
-        $books = $query->paginate(10)->withQueryString();
+        $books = $query->paginate(8)->withQueryString();
 
         $noResults = $searchTerm && $books->isEmpty();
 
@@ -83,7 +83,7 @@ class BookController extends Controller
         ]);
         
         $book->update($request->all());
-        return redirect()->route('books.show', $book->id)->with('success', 'Libro actualizado.');
+        return redirect()->route('trabajador.books.show', $book->id)->with('success', 'Libro actualizado.');
     }
 
     /**

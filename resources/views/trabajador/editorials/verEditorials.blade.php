@@ -14,10 +14,10 @@
     <!-- Buscador -->
     <div class="row justify-content-center mt-4">
         <div class="col-md-8">
-            <form action="{{ route('editorials.index') }}" method="GET" class="d-flex">
+            <form action="{{ route('trabajador.editorials.index') }}" method="GET" class="d-flex">
                 <input type="text" name="search" class="form-control" placeholder="Buscar por nombre...">
                 <button type="submit" class="btn btn-primary ms-2">Buscar</button>
-                <a href="{{ route('editorials.index') }}" class="btn btn-primary ms-2">Ver editoriales</a>
+                <a href="{{ route('trabajador.editorials.index') }}" class="btn btn-primary ms-2">Ver editoriales</a>
             </form>
             @if ($noResults)
                 <div class="alert alert-warning text-center mt-3" role="alert">
@@ -46,7 +46,7 @@
                     </div>
 
                     <div class="modal-body">
-                        <form method="POST" action="{{ route('editorials.store') }}">
+                        <form method="POST" action="{{ route('trabajador.editorials.store') }}">
                             @csrf
 
                             <div class="mb-3">
@@ -79,7 +79,7 @@
                     <div class="card shadow-sm">
                         <div class="card-body d-flex justify-content-between align-items-center">
                             <h5 class="mb-0">{{ $editorial->name }}</h5>
-                            <a href="{{ route('editorials.show', $editorial->id) }}" class="btn btn-outline-primary">
+                            <a href="{{ route('trabajador.editorials.show', $editorial->id) }}" class="btn btn-outline-primary">
                                 Ver detalles
                             </a>
                         </div>

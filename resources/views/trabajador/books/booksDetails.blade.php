@@ -32,7 +32,7 @@
 
                             <p>
                                 <strong>Autor:</strong>
-                                <a href="{{ route('autors.show', $book->autor->id) }}" target="_blank">
+                                <a href="{{ route('trabajador.autors.show', $book->autor->id) }}" target="_blank">
                                     {{ $book->autor->name }} {{ $book->autor->lastname }}
                                 </a>
                             </p>
@@ -46,7 +46,7 @@
                                     data-bs-target="#modificarLibroModal">
                                     Modificar libro
                                 </button>
-                                <form action="{{ route('books.destroy', $book->id) }}" method="POST"
+                                <form action="{{ route('trabajador.books.destroy', $book->id) }}" method="POST"
                                     onsubmit="return confirm('¿Estás seguro de que deseas borrar este libro?');">
                                     @csrf
                                     @method('DELETE')
@@ -66,7 +66,7 @@
                                             aria-label="Cerrar"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form method="POST" action="{{ route('books.update', $book->id) }}">
+                                            <form method="POST" action="{{ route('trabajador.books.update', $book->id) }}">
                                                 @csrf
                                                 @method('PUT')
 
@@ -109,7 +109,7 @@
                                                 </div>
 
                                                 <div class="d-flex justify-content-between">
-                                                    <a href="{{ route('books.show', $book->id) }}"
+                                                    <a href="{{ route('trabajador.books.show', $book->id) }}"
                                                         class="btn btn-outline-secondary">Cancelar</a>
                                                     <button type="submit" class="btn btn-primary">Guardar
                                                         cambios</button>

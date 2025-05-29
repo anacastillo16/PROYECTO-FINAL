@@ -46,7 +46,7 @@ class EditorialController extends Controller
 
         Editorial::create($request->all());
 
-        return redirect()->route('editorials.index')->with('success', 'Editorial creada.');
+        return redirect()->route('trabajador.editorials.index')->with('success', 'Editorial creada.');
     }
 
     /**
@@ -74,7 +74,7 @@ class EditorialController extends Controller
         ]);
 
         $editorial->update($request->all());
-        return redirect()->route('editorials.show', $editorial->id)->with('success', 'Editorial actualizada.');
+        return redirect()->route('trabajador.editorials.show', $editorial->id)->with('success', 'Editorial actualizada.');
     }
 
     /**
@@ -84,6 +84,6 @@ class EditorialController extends Controller
     {
         $editorial = Editorial::findOrFail($id);
         $editorial->delete();
-        return redirect()->route('editorials.index')->with('success', 'Editorial eliminada.');
+        return redirect()->route('trabajador.editorials.index')->with('success', 'Editorial eliminada.');
     }
 }

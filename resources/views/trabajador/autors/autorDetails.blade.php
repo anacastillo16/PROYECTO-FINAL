@@ -25,7 +25,7 @@
                                 <p class="card-text"><strong>Email:</strong> {{ $autor->email }}</p>
                                 <p class="card-text">
                                     <strong>Editorial:</strong>
-                                    <a href="{{ route('editorials.show', $autor->editorial->id) }}" class="link-primary" target="_blank">
+                                    <a href="{{ route('trabajador.editorials.show', $autor->editorial->id) }}" class="link-primary" target="_blank">
                                         {{ $autor->editorial->name }}
                                     </a>
                                 </p>
@@ -37,13 +37,13 @@
                                     data-bs-target="#modificarAutorModal">
                                     Modificar autor
                                 </button>
-                                <form action="{{ route('autors.destroy', $autor->id) }}" method="POST"
+                                <form action="{{ route('trabajador.autors.destroy', $autor->id) }}" method="POST"
                                     onsubmit="return confirm('¿Estás seguro de que deseas borrar este autor?');">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">Borrar</button>
                                 </form>
-                                <a href="{{ route('autors.index') }}" class="btn btn-secondary">Ver autores</a>
+                                <a href="{{ route('trabajador.autors.index') }}" class="btn btn-secondary">Ver autores</a>
                             </div>
 
                             <!-- Modal -->
@@ -59,7 +59,7 @@
                                         </div>
 
                                         <div class="modal-body">
-                                            <form method="POST" action="{{ route('autors.update', $autor->id) }}">
+                                            <form method="POST" action="{{ route('trabajador.autors.update', $autor->id) }}">
                                                 @csrf
                                                 @method('PUT')
 

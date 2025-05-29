@@ -50,7 +50,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" action="{{ route('books.store') }}">
+                        <form method="POST" action="{{ route('trabajador.books.store') }}">
                             @csrf
                             <div class="mb-3">
                                 <label for="isbn" class="form-label">ISBN</label>
@@ -119,7 +119,7 @@
                     </div>
                     <div class="card-body d-flex flex-column align-items-center">
                         <h6 class="card-subtitle mb-3 text-muted">{{ $book->autor->name }} {{ $book->autor->lastname }}</h6>
-                        <a href="{{ route('books.show', $book->id) }}" class="btn btn-outline-primary mt-auto">Ver detalles</a>
+                        <a href="{{ route('trabajador.books.show', $book->id) }}" class="btn btn-outline-primary mt-auto">Ver detalles</a>
                     </div>
                 </div>
             </div>

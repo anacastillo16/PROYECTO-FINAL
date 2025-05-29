@@ -29,13 +29,13 @@
                                     data-bs-target="#modificarEditorialModal">
                                     Modificar editorial
                                 </button>
-                                <form action="{{ route('editorials.destroy', $editorial->id) }}" method="POST"
+                                <form action="{{ route('trabajador.editorials.destroy', $editorial->id) }}" method="POST"
                                     onsubmit="return confirm('¿Estás seguro de que deseas borrar esta editorial?');">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">Borrar</button>
                                 </form>
-                                <a href="{{ route('editorials.index') }}" class="btn btn-secondary">Ver editoriales</a>
+                                <a href="{{ route('trabajador.editorials.index') }}" class="btn btn-secondary">Ver editoriales</a>
                             </div>
 
                             <!-- Modal -->
@@ -52,7 +52,7 @@
 
                                         <div class="modal-body">
                                             <form method="POST"
-                                                action="{{ route('editorials.update', $editorial->id) }}">
+                                                action="{{ route('trabajador.editorials.update', $editorial->id) }}">
                                                 @csrf
                                                 @method('PUT')
 
@@ -71,7 +71,7 @@
                                                 </div>
 
                                                 <div class="d-flex justify-content-between">
-                                                    <a href="{{ route('editorials.show', $editorial->id) }}"
+                                                    <a href="{{ route('trabajador.editorials.show', $editorial->id) }}"
                                                         class="btn btn-outline-secondary">Cancelar</a>
                                                     <button type="submit" class="btn btn-primary">Guardar
                                                         cambios</button>

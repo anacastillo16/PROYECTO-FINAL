@@ -20,7 +20,7 @@ class PublicIndexController extends Controller
             $query->where('title', 'like', '%' . $searchTerm . '%');
         }
 
-        $books = $query->paginate(10)->withQueryString();
+        $books = $query->paginate(8)->withQueryString();
 
         $noResults = $searchTerm && $books->isEmpty();
 
