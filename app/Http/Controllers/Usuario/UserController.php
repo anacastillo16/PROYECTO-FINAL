@@ -36,6 +36,14 @@ class UserController extends Controller
         return view('usuario.indexUSUARIO', compact('books', 'noResults'));
     }
 
+    /**
+     * Show the details of a specific book.
+     */
+    public function showBook($id){
+        $book = Book::with(['autor.editorial'])->findOrFail($id);
+        return view('usuario.books.booksDetails', compact('book'));
+    }
+
 
     /**
      * Show the form for creating a new resource.
