@@ -74,6 +74,32 @@ class UserController extends Controller
         return view('usuario.autors.autorDetails', compact('autor'));
     }
 
+    /**
+     * Show the list of editorials.
+     */
+    public function showEditorials(Request $request){
+        $search = $request->input('search');
+
+        $query = Editorial::with('autors');
+
+        if ($search) {
+            $query->where('name', 'LIKE', '%' . $search . '%');
+        }
+
+        $editorials = $query->get();
+
+        $noResults = $editorials->isEmpty() && $search;
+        return view('usuario.editorials.verEditorials', compact('editorials', 'noResults'));
+    }
+
+    /**
+     * Show the details of a specific editorial.
+     */
+    public function showEditorial($id){
+        $editorial = Editorial::findOrFail($id);
+        return view('usuario.editorials.editorialDetails', compact('editorial'));
+    }
+
 
     /**
      * Show the form for creating a new resource.

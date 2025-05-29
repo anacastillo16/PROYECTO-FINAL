@@ -61,6 +61,6 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('trabajador/verEditorials/{id}', [EditorialController::class, 'destroy'])->name( 'trabajador.editorials.destroy');
 
     //USUARIO EDITORIALS
-    Route::get('usuario/editoriales', [UserController::class, 'index'])->name('usuario.editorials.index');
-    Route::get('usuario/editorialDetails/{id}', [UserController::class, 'show'])->name('usuario.editorials.show');
+    Route::get('usuario/editoriales', [UserController::class, 'showEditorials'])->name('usuario.editorials.index');
+    Route::get('usuario/editorialDetails/{id}', [UserController::class, 'showEditorial'])->name('usuario.editorials.show');
 });
