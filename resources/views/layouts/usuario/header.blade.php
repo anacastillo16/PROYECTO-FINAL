@@ -21,7 +21,7 @@
 
             <ul class="navbar-nav ms-auto mb-0 d-flex flex-row align-items-center gap-3">
                 <li class="nav-item">
-                    <a href="#" class="navbar-text text-white fw-semibold">
+                    <a href="{{ route('usuario.update') }}" class="navbar-text text-white fw-semibold">
                         {{ Auth::user()->name }}
                     </a>
                 </li>

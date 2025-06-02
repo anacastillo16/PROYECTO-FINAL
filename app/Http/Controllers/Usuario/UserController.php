@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Author;
 use App\Models\Editorial;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -130,15 +132,41 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $user = Auth::user();
+        return view('usuario.editProfile', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        $user = Auth::user();
+
+        $request->validate([
+            'name' => 'required',
+            'lastname' => 'required',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'password' => 'nullable|confirmed|min:6',
+            'rol' => 'required',
+        ],
+        [
+            'email.unique' => 'El correo electrónico ya está en uso.',
+            'password.confirmed' => 'Las contraseñas no coinciden.',
+            'password.min' => 'La contraseña debe tener al menos 6 caracteres.',
+        ]);
+
+        $user->name = $request->name;
+        $user->lastname = $request->lastname;
+        $user->email = $request->email;
+
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->password);
+        }
+
+        $user->save();
+
+        return redirect()->route('index.usuario')->with('success', 'Perfil actualizado correctamente.');
     }
 
     /**

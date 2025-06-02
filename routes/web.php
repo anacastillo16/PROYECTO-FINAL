@@ -69,5 +69,8 @@ Route::middleware(['auth'])->group(function () {
         //EDITORIALS
         Route::get('usuario/editoriales', [UserController::class, 'showEditorials'])->name('usuario.editorials.index');
         Route::get('usuario/editorialDetails/{id}', [UserController::class, 'showEditorial'])->name('usuario.editorials.show');
+
+        //EDIT PROFILE
+        Route::get('usuario/editarPerfil', [UserController::class, 'update'])->name('usuario.update');
     });
 });
