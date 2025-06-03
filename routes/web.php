@@ -76,3 +76,15 @@ Route::middleware(['auth'])->group(function () {
         Route::get('usuario/editorialDetails/{id}', [UserController::class, 'showEditorial'])->name('usuario.editorials.show');
     });
 });
+
+Route::get('/home', function () {
+    if (auth()->check()) {
+        return redirect(
+            auth()->user()->rol === 'trabajador' 
+                ? route('index.trabajador') 
+                : route('index.usuario')
+        );
+    }
+
+    return redirect()->route('login');
+});
