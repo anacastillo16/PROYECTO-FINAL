@@ -130,10 +130,10 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit()
     {
         $user = Auth::user();
-        return view('usuario.editProfile', compact('user'));
+        return view('perfil.actualizarPerfil', compact('user'));
     }
 
     /**
@@ -146,9 +146,8 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'lastname' => 'required',
-            'email' => 'required|email|unique:users,email,' . $user->id,
+            'email' => 'required|email|unique:user,email,' . $user->id,
             'password' => 'nullable|confirmed|min:6',
-            'rol' => 'required',
         ],
         [
             'email.unique' => 'El correo electrónico ya está en uso.',
@@ -172,8 +171,12 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy()
     {
-        //
+        $user = Auth::user();
+        Auth::logout(); // Cierra sesión
+        $user->delete(); // Elimina el usuario de la base de datos
+
+        return redirect()->route('login')->with('success', 'Tu cuenta ha sido eliminada correctamente.');
     }
 }

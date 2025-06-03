@@ -43,7 +43,8 @@
                             <!-- Botones -->
                             <div class="mt-4 d-flex gap-2">
                                 <a href="{{ route('index.usuario') }}" class="btn btn-secondary">Ver libros</a>
-                                <a href="#" class="btn btn-primary">Añadir a favoritos</a>
+                                <a href="#" class="btn btn-primary
+                                ">Añadir a favoritos</a>
                             </div>
                         </div>
                     </div>

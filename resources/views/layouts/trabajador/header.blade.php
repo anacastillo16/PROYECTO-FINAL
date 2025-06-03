@@ -18,9 +18,9 @@
 
             <ul class="navbar-nav ms-auto mb-0 d-flex flex-row align-items-center gap-3">
                 <li class="nav-item">
-                    <span class="navbar-text text-white fw-semibold">
+                    <a href="{{ route('perfil.edit') }}" class="navbar-text text-white fw-semibold">
                         {{ Auth::user()->name }}
-                    </span>
+                    </a>
                 </li>
                 <li class="nav-item">
                     <form method="POST" action="{{ route('logout') }}">
