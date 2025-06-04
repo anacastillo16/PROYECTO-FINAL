@@ -41,10 +41,23 @@
                             <p>{{ $book->description }}</p>
 
                             <!-- Botones -->
-                            <div class="mt-4 d-flex gap-2">
+                            <div class="mt-4 d-flex gap-2 align-items-start">
                                 <a href="{{ route('index.usuario') }}" class="btn btn-secondary">Ver libros</a>
-                                <a href="#" class="btn btn-primary
-                                ">Añadir a favoritos</a>
+
+                                @auth
+                                    @if(auth()->user()->favoriteBooks->contains($book->id))
+                                        <form action="{{ route('favoritos.destroy', $book) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-warning">★ Quitar de favoritos</button>
+                                        </form>
+                                    @else
+                                        <form action="{{ route('favoritos.store', $book) }}" method="POST">
+                                            @csrf
+                                            <button class="btn btn-outline-warning">☆ Añadir a favoritos</button>
+                                        </form>
+                                    @endif
+                                @endauth
                             </div>
                         </div>
                     </div>

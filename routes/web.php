@@ -6,6 +6,7 @@ use App\Http\Controllers\Trabajador\BookController;
 use App\Http\Controllers\Trabajador\AuthorController;
 use App\Http\Controllers\Trabajador\EditorialController;
 use App\Http\Controllers\Usuario\UserController;
+use App\Http\Controllers\Usuario\FavoritoController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\UserMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -74,6 +75,11 @@ Route::middleware(['auth'])->group(function () {
         //EDITORIALS
         Route::get('usuario/editoriales', [UserController::class, 'showEditorials'])->name('usuario.editorials.index');
         Route::get('usuario/editorialDetails/{id}', [UserController::class, 'showEditorial'])->name('usuario.editorials.show');
+
+        //FAVORITOS
+        Route::get('/usuario/mis-favoritos', [FavoritoController::class, 'index'])->name('favoritos.index');
+        Route::post('usuario/favoritos/{book}', [FavoritoController::class, 'store'])->name('favoritos.store');
+        Route::delete('usuario/favoritos/{book}', [FavoritoController::class, 'destroy'])->name('favoritos.destroy');
     });
 });
 

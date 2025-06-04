@@ -10,4 +10,10 @@ class User extends Authenticatable
     protected $fillable = ['name', 'lastname', 'email', 'password', 'rol'];
 
     protected $hidden = [ "password"];
+
+    public function favoriteBooks()
+    {
+        return $this->belongsToMany(Book::class, 'favoritos');
+    }
+
 }

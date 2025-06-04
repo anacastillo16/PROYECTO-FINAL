@@ -11,4 +11,10 @@ class Book extends Model
     {
         return $this->belongsTo(Author::class, 'autor_id');
     }
+
+    public function favoredByUsers()
+    {
+        return $this->belongsToMany(User::class, 'favoritos');
+    }
+
 }
