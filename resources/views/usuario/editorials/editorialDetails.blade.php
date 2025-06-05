@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.base')
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Detalle editorial</title>
-    @vite(['resources/js/app.js'])
-</head>
+@section('title', 'Detalle editorial')
 
-<body>
+@section('header')
     @include('layouts.usuario.header')
+@endsection
 
+@section('content')
     <main class="container my-5">
         <h2 class="mb-4 text-center">Detalle de la editorial</h2>
         
@@ -21,7 +17,7 @@
                         <!-- Detalles editorial -->
                         <div class="col-md-8">
                             <h2 class="card-title mb-3">{{ $editorial->name }}</h2>
-                            <p class="card-text"><strong>Dirección:</strong> {{ $editorial->address}}</p>
+                            <p class="card-text"><strong>Dirección:</strong> {{ $editorial->address }}</p>
 
                             <!-- Botones -->
                             <div class="mt-4 d-flex gap-2">
@@ -33,6 +29,4 @@
             </div>
         </div>
     </main>
-</body>
-
-</html>
+@endsection

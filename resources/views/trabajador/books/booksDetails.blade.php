@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.base')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalle Libro</title>
-    @vite(['resources/js/app.js'])
-</head>
+@section('title', 'Detalle Libro - Trabajador')
 
-<body>
+@section('header')
     @include('layouts.trabajador.header')
+@endsection
 
+@section('content')
     <main class="container my-5">
         <h2 class="mb-4 text-center">Detalle del libro</h2>
 
@@ -46,24 +42,25 @@
                                     data-bs-target="#modificarLibroModal">
                                     Modificar libro
                                 </button>
-                                <form action="{{ route('trabajador.books.destroy', $book->id) }}" method="POST"
-                                    onsubmit="return confirm('¿Estás seguro de que deseas borrar este libro?');">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Borrar</button>
-                                </form>
+
+                                <!-- Botón para abrir modal eliminar libro -->
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#confirmDeleteBookModal">
+                                    Borrar
+                                </button>
+
                                 <a href="{{ route('index.trabajador') }}" class="btn btn-secondary">Ver libros</a>
                             </div>
 
-                            <!-- Modal -->
+                            <!-- Modal para modificar libro -->
                             <div class="modal fade" id="modificarLibroModal" tabindex="-1"
-                                aria-labelledby="crearLibroModalLabel" aria-hidden="true">
+                                aria-labelledby="modificarLibroModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-md">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="modificarLibroModal">Modificar libro</h5>
+                                            <h5 class="modal-title" id="modificarLibroModalLabel">Modificar libro</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Cerrar"></button>
+                                                aria-label="Cerrar"></button>
                                         </div>
                                         <div class="modal-body">
                                             <form method="POST" action="{{ route('trabajador.books.update', $book->id) }}">
@@ -72,7 +69,9 @@
 
                                                 <div class="mb-3">
                                                     <label for="isbn" class="form-label">ISBN</label>
-                                                    <input type="text" name="isbn" id="isbn" class="form-control  @error('isbn') is-invalid @enderror" value="{{ $book->isbn }}" required>
+                                                    <input type="text" name="isbn" id="isbn"
+                                                        class="form-control  @error('isbn') is-invalid @enderror"
+                                                        value="{{ old('isbn', $book->isbn) }}" required>
                                                     @error('isbn')
                                                         <div class="invalid-feedback">{{ $message }}</div>
                                                     @enderror
@@ -81,20 +80,21 @@
                                                 <div class="mb-3">
                                                     <label for="title" class="form-label">Título</label>
                                                     <input type="text" name="title" id="title" class="form-control"
-                                                        value="{{ $book->title }}" required>
+                                                        value="{{ old('title', $book->title) }}" required>
                                                 </div>
 
                                                 <div class="mb-3">
                                                     <label for="image" class="form-label">URL de la portada</label>
                                                     <input type="text" name="image" id="image" class="form-control"
-                                                        value="{{ $book->image }}">
+                                                        value="{{ old('image', $book->image) }}">
                                                 </div>
 
                                                 <div class="mb-3">
                                                     <label for="autor_id" class="form-label">Autor</label>
                                                     <select name="autor_id" id="autor_id" class="form-select" required>
                                                         @foreach($autores as $autor)
-                                                            <option value="{{ $autor->id }}" {{ $book->autor_id == $autor->id ? 'selected' : '' }}>
+                                                            <option value="{{ $autor->id }}"
+                                                                {{ old('autor_id', $book->autor_id) == $autor->id ? 'selected' : '' }}>
                                                                 {{ $autor->name }} {{ $autor->lastname }}
                                                             </option>
                                                         @endforeach
@@ -103,9 +103,7 @@
 
                                                 <div class="mb-4">
                                                     <label for="description" class="form-label">Descripción</label>
-                                                    <textarea name="description" id="description" rows="5"
-                                                        class="form-control"
-                                                        required>{{ $book->description }}</textarea>
+                                                    <textarea name="description" id="description" rows="5" class="form-control" required>{{ old('description', $book->description) }}</textarea>
                                                 </div>
 
                                                 <div class="d-flex justify-content-between">
@@ -119,12 +117,43 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- Modal de confirmación para borrar libro -->
+                            <div class="modal fade" id="confirmDeleteBookModal" tabindex="-1"
+                                aria-labelledby="confirmDeleteBookModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="confirmDeleteBookModalLabel">¿Estás segura?</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Cerrar"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Esta acción eliminará el libro de forma permanente. ¿Deseas continuar?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Cancelar</button>
+
+                                            <form action="{{ route('trabajador.books.destroy', $book->id) }}" method="POST" class="d-inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Sí, eliminar libro</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </main>
+@endsection
+
+@push('scripts')
     @if ($errors->any())
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -136,6 +165,4 @@
         });
     </script>
     @endif
-</body>
-
-</html>
+@endpush

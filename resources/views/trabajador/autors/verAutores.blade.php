@@ -1,25 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.base')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Autores</title>
-    @vite(['resources/js/app.js'])
-</head>
+@section('title', 'Autores - Trabajador')
 
-<body>
+@section('header')
     @include('layouts.trabajador.header')
+@endsection
 
+@section('content')
     <!-- Buscador -->
     <div class="row justify-content-center mt-4">
         <div class="col-md-8">
             <form action="{{ route('trabajador.autors.index') }}" method="GET" class="d-flex">
-                <input type="text" name="search" class="form-control" placeholder="Buscar por nombre...">
+                <input type="text" name="search" class="form-control" placeholder="Buscar por nombre..." value="{{ request('search') }}">
                 <button type="submit" class="btn btn-primary ms-2">Buscar</button>
                 <a href="{{ route('trabajador.autors.index') }}" class="btn btn-primary ms-2">Ver autores</a>
             </form>
-             @if ($noResults)
+
+            @if(request()->has('search') && $autors->isEmpty())
                 <div class="alert alert-warning text-center mt-3" role="alert">
                     No se encontró ningún autor con ese nombre.
                 </div>
@@ -28,7 +25,6 @@
     </div>
 
     <main class="container my-5">
-
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2 class="mb-0">Autores disponibles</h2>
             <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#crearAutorModal">
@@ -75,7 +71,7 @@
 
                             <div class="mb-3">
                                 <label for="phone" class="form-label">Teléfono</label>
-                                <input type="phone" name="phone" id="phone" class="form-control @error('phone') is-invalid @enderror" value="{{ old('phone') }}" required>
+                                <input type="tel" name="phone" id="phone" class="form-control @error('phone') is-invalid @enderror" value="{{ old('phone') }}" required>
                                 @error('phone')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -129,7 +125,6 @@
                 </div>
             @endforeach
         </div>
-
     </main>
 
     @if ($errors->any())
@@ -143,6 +138,4 @@
         });
     </script>
     @endif
-</body>
-
-</html>
+@endsection

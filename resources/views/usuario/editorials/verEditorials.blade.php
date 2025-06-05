@@ -1,21 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.base')
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Editoriales</title>
-    @vite(['resources/js/app.js'])
-</head>
+@section('title', 'Editoriales')
 
-<body>
+@section('header')
     @include('layouts.usuario.header')
+@endsection
 
+@section('content')
     <!-- Buscador -->
     <div class="row justify-content-center mt-4">
         <div class="col-md-8">
             <form action="{{ route('usuario.editorials.index') }}" method="GET" class="d-flex">
-                <input type="text" name="search" class="form-control" placeholder="Buscar por nombre...">
+                <input type="text" name="search" class="form-control" placeholder="Buscar por nombre..." value="{{ request('search') }}">
                 <button type="submit" class="btn btn-primary ms-2">Buscar</button>
                 <a href="{{ route('usuario.editorials.index') }}" class="btn btn-primary ms-2">Ver editoriales</a>
             </form>
@@ -50,6 +46,4 @@
         </div>
 
     </main>
-</body>
-
-</html>
+@endsection

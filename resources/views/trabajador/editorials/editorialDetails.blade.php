@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.base')
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Detalle editorial</title>
-    @vite(['resources/js/app.js'])
-</head>
+@section('title', 'Detalle editorial - Trabajador')
 
-<body>
+@section('header')
     @include('layouts.trabajador.header')
+@endsection
 
+@section('content')
     <main class="container my-5">
         <h2 class="mb-4 text-center">Detalle de la editorial</h2>
         
@@ -21,7 +17,7 @@
                         <!-- Detalles editorial -->
                         <div class="col-md-8">
                             <h2 class="card-title mb-3">{{ $editorial->name }}</h2>
-                            <p class="card-text"><strong>Dirección:</strong> {{ $editorial->address}}</p>
+                            <p class="card-text"><strong>Dirección:</strong> {{ $editorial->address }}</p>
 
                             <!-- Botones -->
                             <div class="mt-4 d-flex gap-2">
@@ -29,23 +25,22 @@
                                     data-bs-target="#modificarEditorialModal">
                                     Modificar editorial
                                 </button>
-                                <form action="{{ route('trabajador.editorials.destroy', $editorial->id) }}" method="POST"
-                                    onsubmit="return confirm('¿Estás seguro de que deseas borrar esta editorial?');">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Borrar</button>
-                                </form>
+
+                                <!-- Botón para abrir modal borrar -->
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteEditorialModal">
+                                    Borrar
+                                </button>
+
                                 <a href="{{ route('trabajador.editorials.index') }}" class="btn btn-secondary">Ver editoriales</a>
                             </div>
 
-                            <!-- Modal -->
+                            <!-- Modal modificar editorial -->
                             <div class="modal fade" id="modificarEditorialModal" tabindex="-1"
                                 aria-labelledby="modificarEditorialModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-md">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="modificarEditorialModal">Modificar editorial
-                                            </h5>
+                                            <h5 class="modal-title" id="modificarEditorialModalLabel">Modificar editorial</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Cerrar"></button>
                                         </div>
@@ -58,7 +53,7 @@
 
                                                 <div class="mb-3">
                                                     <label for="name" class="form-label">Nombre</label>
-                                                    <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ $editorial->name }}" required />
+                                                    <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name', $editorial->name) }}" required />
                                                     @error('name')
                                                         <div class="invalid-feedback">{{ $message }}</div>
                                                     @enderror
@@ -67,7 +62,7 @@
                                                 <div class="mb-3">
                                                     <label for="address" class="form-label">Dirección</label>
                                                     <input type="text" name="address" id="address" class="form-control"
-                                                        value="{{ $editorial->address }}" />
+                                                        value="{{ old('address', $editorial->address) }}" />
                                                 </div>
 
                                                 <div class="d-flex justify-content-between">
@@ -81,13 +76,39 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- Modal confirmación borrar editorial -->
+                            <div class="modal fade" id="confirmDeleteEditorialModal" tabindex="-1" aria-labelledby="confirmDeleteEditorialModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="confirmDeleteEditorialModalLabel">¿Estás segura?</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Esta acción eliminará la editorial de forma permanente. ¿Deseas continuar?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                            <form action="{{ route('trabajador.editorials.destroy', $editorial->id) }}" method="POST" class="d-inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Sí, eliminar editorial</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </main>
+@endsection
 
+@push('scripts')
     @if ($errors->any())
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -99,6 +120,4 @@
         });
     </script>
     @endif
-</body>
-
-</html>
+@endpush

@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalle autor</title>
-    @vite(['resources/js/app.js'])
-</head>
-<body>
-    @include('layouts.trabajador.header')
+@extends('layouts.base')
 
+@section('title', 'Detalle autor')
+
+@section('header')
+    @include('layouts.trabajador.header')
+@endsection
+
+@section('content')
     <main class="container my-5">
         <h2 class="mb-4 text-center">Detalle del autor</h2>
         
@@ -33,107 +31,42 @@
 
                             <!-- Botones -->
                             <div class="mt-4 d-flex gap-2">
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#modificarAutorModal">
-                                    Modificar autor
-                                </button>
-                                <form action="{{ route('trabajador.autors.destroy', $autor->id) }}" method="POST"
-                                    onsubmit="return confirm('¿Estás seguro de que deseas borrar este autor?');">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Borrar</button>
-                                </form>
                                 <a href="{{ route('trabajador.autors.index') }}" class="btn btn-secondary">Ver autores</a>
-                            </div>
 
-                            <!-- Modal -->
-                            <div class="modal fade" id="modificarAutorModal" tabindex="-1"
-                                aria-labelledby="modificarAutorModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-md">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="modificarAutorModal">Modificar autor
-                                            </h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Cerrar"></button>
-                                        </div>
-
-                                        <div class="modal-body">
-                                            <form method="POST" action="{{ route('trabajador.autors.update', $autor->id) }}">
-                                                @csrf
-                                                @method('PUT')
-
-                                                <div class="mb-3">
-                                                    <label for="dni" class="form-label">DNI</label>
-                                                    <input type="text" name="dni" id="dni" class="form-control @error('dni') is-invalid @enderror" value="{{ $autor->dni }}" required>
-                                                    @error('dni')
-                                                        <div class="invalid-feedback">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-
-                                                <div class="mb-3">
-                                                    <label for="name" class="form-label">Nombre</label>
-                                                    <input type="text" name="name" id="name" class="form-control" value="{{ $autor->name }}"  required>
-                                                </div>
-
-                                                <div class="mb-3">
-                                                    <label for="lastname" class="form-label">Apellidos</label>
-                                                    <input type="text" name="lastname" id="lastname" class="form-control" value="{{ $autor->lastname }}" required > 
-                                                </div>
-
-                                                <div class="mb-3">
-                                                    <label for="phone" class="form-label">Teléfono</label>
-                                                    <input type="phone" name="phone" id="phone" class="form-control @error('phone') is-invalid @enderror" value="{{ $autor->phone }}" required>
-                                                    @error('phone')
-                                                        <div class="invalid-feedback">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-
-                                                <div class="mb-3">
-                                                    <label for="email" class="form-label">Email</label>
-                                                    <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" value="{{ $autor->email }}" required>
-                                                    @error('email')
-                                                        <div class="invalid-feedback">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-
-                                                <div class="mb-4">
-                                                    <label for="editorial_id" class="form-label">Editorial</label>
-                                                    <select name="editorial_id" id="editorial_id" class="form-select" required>
-                                                        @foreach($editoriales as $editorial)
-                                                            <option value="{{ $editorial->id }}" {{ $autor->editorial_id == $editorial->id ? 'selected' : '' }}>
-                                                                {{ $editorial->name }} 
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-
-                                                <div class="text-end">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                                    <button type="submit" class="btn btn-primary">Modificar autor</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
+                                <!-- Botón para abrir modal eliminar autor -->
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteAutorModal">
+                                    Borrar autor
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </main>
 
-    @if ($errors->any())
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var modalEl = document.getElementById('modificarAutorModal');
-            if (modalEl) {
-                var modal = new bootstrap.Modal(modalEl);
-                modal.show();
-            }
-        });
-    </script>
-    @endif
-</body>
-</html>
+        <!-- Modal de confirmación para borrar autor -->
+        <div class="modal fade" id="confirmDeleteAutorModal" tabindex="-1" aria-labelledby="confirmDeleteAutorModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="confirmDeleteAutorModalLabel">¿Estás segura?</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body">
+                        Esta acción eliminará al autor de forma permanente. ¿Deseas continuar?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+
+                        <form action="{{ route('trabajador.autors.destroy', $autor->id) }}" method="POST" class="d-inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Sí, eliminar autor</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+@endsection

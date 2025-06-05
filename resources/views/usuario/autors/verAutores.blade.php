@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.base')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Autores</title>
-    @vite(['resources/js/app.js'])
-</head>
+@section('title', 'Autores')
 
-<body>
+@section('header')
     @include('layouts.usuario.header')
+@endsection
 
+@section('content')
     <!-- Buscador -->
     <div class="row justify-content-center mt-4">
         <div class="col-md-8">
@@ -19,11 +15,11 @@
                 <button type="submit" class="btn btn-primary ms-2">Buscar</button>
                 <a href="{{ route('usuario.autors.index') }}" class="btn btn-primary ms-2">Ver autores</a>
             </form>
-            <!-- @if ($noResults)
+            @if ($noResults)
                 <div class="alert alert-warning text-center mt-3" role="alert">
                     No se encontró ningún autor con ese nombre.
                 </div>
-            @endif -->
+            @endif
         </div>
     </div>
 
@@ -43,8 +39,5 @@
                 </div>
             @endforeach
         </div>
-
     </main>
-</body>
-
-</html>
+@endsection

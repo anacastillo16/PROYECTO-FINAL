@@ -95,7 +95,7 @@ class AuthorController extends Controller
 
         $autor->update($request->all());
         
-        return redirect()->route('trabjador.autors.show', $autor->id)->with('success', 'Autor actualizado.');
+        return redirect()->route('trabajador.autors.show', $autor->id)->with('success', 'Autor actualizado.');
     }
 
     /**

@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.base')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalle Libro</title>
-    @vite(['resources/js/app.js'])
-</head>
+@section('title', 'Detalle Libro')
 
-<body>
+@section('header')
     @include('layouts.usuario.header')
+@endsection
 
+@section('content')
     <main class="container my-5">
         <h2 class="mb-4 text-center">Detalle del libro</h2>
 
@@ -65,6 +61,4 @@
             </div>
         </div>
     </main>
-</body>
-
-</html>
+@endsection

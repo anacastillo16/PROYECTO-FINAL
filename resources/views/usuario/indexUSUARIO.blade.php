@@ -1,20 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.base')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblioteca</title>
-    @vite(['resources/js/app.js'])
-    <style>
-        body {
-            overflow-x: hidden;
-        }
-    </style>
-</head>
+@section('title', 'Biblioteca')
 
-<body>
+@section('header')
     @include('layouts.usuario.header')
+@endsection
+
+@section('content')
     <!-- Buscador -->
     <div class="row justify-content-center mt-4">
         <div class="col-md-8">
@@ -48,7 +40,8 @@
                                 style="height: 300px; width: 200px; object-fit: cover;" />
                         </div>
                         <div class="card-body d-flex flex-column align-items-center">
-                            <h6 class="card-subtitle mb-3 text-muted">{{ $book->autor->name }} {{ $book->autor->lastname }}
+                            <h6 class="card-subtitle mb-3 text-muted">
+                                {{ $book->autor->name }} {{ $book->autor->lastname }}
                             </h6>
                             <a href="{{ route('usuario.books.show', $book->id) }}"
                                 class="btn btn-outline-primary mt-auto">Ver detalles</a>
@@ -58,11 +51,9 @@
             @endforeach
         </div>
 
-        <!-- Links de paginación -->
+        <!-- Paginación -->
         <div class="d-flex justify-content-center mt-4">
             {{ $books->links() }}
         </div>
     </main>
-</body>
-
-</html>
+@endsection

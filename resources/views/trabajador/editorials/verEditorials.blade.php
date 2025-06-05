@@ -1,25 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.base')
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Editoriales</title>
-    @vite(['resources/js/app.js'])
-</head>
+@section('title', 'Editoriales - Trabajador')
 
-<body>
+@section('header')
     @include('layouts.trabajador.header')
+@endsection
 
+@section('content')
     <!-- Buscador -->
     <div class="row justify-content-center mt-4">
         <div class="col-md-8">
             <form action="{{ route('trabajador.editorials.index') }}" method="GET" class="d-flex">
-                <input type="text" name="search" class="form-control" placeholder="Buscar por nombre...">
+                <input type="text" name="search" class="form-control" placeholder="Buscar por nombre..." value="{{ request('search') }}">
                 <button type="submit" class="btn btn-primary ms-2">Buscar</button>
                 <a href="{{ route('trabajador.editorials.index') }}" class="btn btn-primary ms-2">Ver editoriales</a>
             </form>
-            @if ($noResults)
+            @if (!empty($noResults) && $noResults)
                 <div class="alert alert-warning text-center mt-3" role="alert">
                     No se encontró ninguna editorial con ese nombre.
                 </div>
@@ -59,7 +55,7 @@
 
                             <div class="mb-3">
                                 <label for="address" class="form-label">Dirección</label>
-                                <input type="text" name="address" id="address" class="form-control" required>
+                                <input type="text" name="address" id="address" class="form-control" value="{{ old('address') }}" required>
                             </div>
 
                             <div class="text-end">
@@ -89,7 +85,9 @@
         </div>
 
     </main>
+@endsection
 
+@push('scripts')
     @if ($errors->any())
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -101,6 +99,4 @@
         });
     </script>
     @endif
-</body>
-
-</html>
+@endpush

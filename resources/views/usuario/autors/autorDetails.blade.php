@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalle autor</title>
-    @vite(['resources/js/app.js'])
-</head>
-<body>
-    @include('layouts.usuario.header')
+@extends('layouts.base')
 
+@section('title', 'Detalle autor')
+
+@section('header')
+    @include('layouts.usuario.header')
+@endsection
+
+@section('content')
     <main class="container my-5">
         <h2 class="mb-4 text-center">Detalle del autor</h2>
         
@@ -41,5 +39,4 @@
             </div>
         </div>
     </main>
-</body>
-</html>
+@endsection
