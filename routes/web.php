@@ -23,6 +23,11 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
 
+//RECUPERAR CONTRASEÑA
+Route::get('/recuperar-password', [AuthController::class, 'showRecoverForm'])->name('recuperar.form');
+Route::post('/recuperar-password', [AuthController::class, 'recoverPassword'])->name('recuperar.submit');
+
+
 // RUTAS PROTEGIDAS
 Route::middleware(['auth'])->group(function () {
     //CERRAR SESIÓN
