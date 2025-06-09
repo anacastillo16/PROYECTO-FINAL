@@ -11,7 +11,7 @@
     {{-- Bootstrap Icons --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 </head>
-<body class="d-flex flex-column min-vh-100">
+<body class="d-flex flex-column min-vh-100 body-bg">
 
     {{-- Cabecera (usuario, trabajador o pública) --}}
     @hasSection('header')
