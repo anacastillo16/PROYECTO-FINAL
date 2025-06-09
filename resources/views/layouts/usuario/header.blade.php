@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-primary py-4">
+<nav class="navbar navbar-expand-lg navbar-light py-4" style="background-color: #6CBF84;">
     <div class="container-fluid d-flex justify-content-between align-items-center">
         <a class="navbar-brand text-white fw-bold" href="{{ route('index.usuario') }}">Biblioteca</a>
 
@@ -28,7 +28,7 @@
                 <li class="nav-item">
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <button type="submit" class="btn btn-outline-light btn-sm">Cerrar sesión</button>
+                        <button type="submit" class="btn button-secondary btn-sm">Cerrar sesión</button>
                     </form>
                 </li>
             </ul>
