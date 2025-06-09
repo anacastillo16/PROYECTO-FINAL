@@ -10,7 +10,7 @@
 </head>
 <body class="bg-light d-flex justify-content-center align-items-center vh-100">
 
-    <div class="card shadow-sm p-4" style="width: 380px; border-radius: 12px;">
+    <div style="width: 380px; border-radius: 12px;">
         @yield('content')
     </div>
     

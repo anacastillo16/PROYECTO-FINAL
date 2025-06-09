@@ -1,10 +1,11 @@
-@extends('layouts.base')
+@extends('layouts.auth')
 
 @section('title', 'Iniciar Sesión')
 
 @section('content')
-    <div class="container my-5 body-bg text-main" style="max-width: 500px; border-radius: 8px; padding: 2rem; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
-        <h2 class="mb-4 text-center fw-bold" style="color: #4A4A4A;">Iniciar Sesión</h2>
+    <div class="container my-5 body-bg text-main"
+        style="max-width: 500px; border-radius: 8px; padding: 2rem; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+        <h2 class="mb-4 text-center fw-bold text-main">Iniciar Sesión</h2>
 
         {{-- Mensaje de éxito al cambiar la contraseña --}}
         @if(session('success'))
@@ -17,28 +18,34 @@
             @csrf
 
             {{-- Email --}}
-            <div class="mb-3">
-                <input type="email" name="email" placeholder="Correo electrónico" value="{{ old('email') }}" required autofocus
-                    class="input-custom @error('email') input-invalid-custom @enderror" />
+            <div class="mb-3 px-4">
+                <input type="email" name="email" placeholder="Correo electrónico" value="{{ old('email') }}" required
+                    autofocus class="form-control @error('email') is-invalid @enderror" />
                 @error('email')
-                    <div class="error-text-custom">
+                    <div class="invalid-feedback">
                         {{ $message }}
                     </div>
                 @enderror
             </div>
 
             {{-- Contraseña --}}
-            <div class="mb-3">
-                <div style="position: relative;">
+            <div class="mb-3 px-4">
+                <div class="input-group">
                     <input type="password" name="password" id="password" placeholder="Contraseña" required
-                        class="input-custom @error('password') input-invalid-custom @enderror" style="padding-right: 2.5rem;">
-                    <button type="button" class="button-secondary-custom toggle-password" data-target="password" 
-                        style="position: absolute; top: 50%; right: 0.5rem; transform: translateY(-50%); border: none; background: transparent; padding: 0;">
-                        <i class="bi bi-eye" style="color: #4A4A4A;"></i>
-                    </button>
+                        class="form-control @error('password') is-invalid @enderror"
+                        style="padding-right: 2.5rem;">
+
+                    <span class="input-group-text bg-white border-start-0" style="cursor: pointer;">
+                        <button type="button" class="btn p-0 m-0 toggle-password" data-target="password" style="background: transparent; border: none;">
+                            <i class="bi bi-eye text-main"></i>
+                        </button>
+                    </span>
                 </div>
+
                 @error('password')
-                    <div class="error-text-custom mt-1">{{ $message }}</div>
+                    <div class="invalid-feedback mt-1 d-block">
+                        {{ $message }}
+                    </div>
                 @enderror
             </div>
 
@@ -55,16 +62,14 @@
 
             {{-- ¿Olvidaste tu contraseña? --}}
             <p class="mt-3 text-center">
-                <a href="{{ route('recuperar.form') }}" class="text-decoration-none text-secondary-custom fw-semibold">
-                    ¿Olvidaste tu contraseña?
-                </a>
+                <a href="{{ route('recuperar.form') }}" class="link-custom"> ¿Olvidaste tu contraseña?</a>
             </p>
         </form>
 
         {{-- Registro --}}
-        <p class="mt-3 text-center">
+        <p class="mt-3 text-center text-main">
             ¿No tienes cuenta?
-            <a href="{{ route('register') }}" class="text-secondary-custom fw-semibold">Regístrate</a>
+            <a href="{{ route('register') }}" class="link-custom">Regístrate</a>
         </p>
     </div>
 @endsection

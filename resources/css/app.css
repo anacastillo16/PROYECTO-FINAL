@@ -36,3 +36,49 @@
 .button-secondary-custom:hover {
   background-color: #98c772; 
 }
+
+/* Links */
+.link-custom {
+    color: #5baa75;
+    text-decoration: none;
+    font-weight: 600; /* para que se note más */
+}
+
+.link-custom:hover {
+    color: #98c772;
+    text-decoration: underline; /* opcional */
+}
+
+
+/* Fondo y texto de los enlaces de paginación */
+.pagination .page-link {
+  color: #4A4A4A; 
+  background-color: #F7FAF5; 
+  border-color: #A8D689; 
+}
+
+/* Hover de los enlaces */
+.pagination .page-link:hover {
+  background-color: #A8D689; 
+  color: white;
+  border-color: #5baa75; 
+}
+
+/* Elemento activo */
+.pagination .page-item.active .page-link {
+  background-color: #6CBF84; 
+  color: white;
+  border-color: #6CBF84;
+}
+
+/* Deshabilitado */
+.pagination .page-item.disabled .page-link {
+  color: #98c772; 
+  background-color: #F7FAF5;
+  border-color: #A8D689;
+}
+
+/* Enlaces */
+a {
+  text-decoration: none;
+}

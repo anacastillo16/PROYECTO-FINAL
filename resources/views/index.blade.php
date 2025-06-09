@@ -5,11 +5,11 @@
 @section('header')
     <!-- Cabecera pública -->
     <header>
-        <nav class="navbar navbar-expand-lg py-4 body-bg" style="box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+        <nav class="navbar navbar-expand-lg py-4" style="background-color: #6CBF84; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
             <div class="container-fluid d-flex justify-content-between align-items-center">
-                <!-- Título -->
-                 <a class="navbar-brand fw-bold" href="{{ route('index.public') }}" style="color: white;">
-                    <img src="{{ asset('favicon.png') }}" alt="Biblioteca" width="40" height="40">
+                <!-- Logo y título -->
+                <a class="navbar-brand d-flex" href="{{ route('index.public') }}">
+                    <img src="{{ asset('favicon.ico') }}" alt="Biblioteca" width="60" height="60">
                 </a>
 
                 <!-- Botones -->
@@ -42,8 +42,8 @@
                     </a>
                 </form>
 
-                @if ($noResults)
-                    <div class="alert-warning-custom text-center mt-3" role="alert">
+                @if ($noResults ?? false)
+                    <div class="alert-warning-custom text-center mt-3" role="alert" style="color:#4A4A4A; background-color:#F7FAF5; padding: 0.5rem; border-radius: 4px;">
                         No se encontró ningún libro con ese título.
                     </div>
                 @endif
@@ -64,12 +64,9 @@
                         <img src="{{ $book->image }}" alt="Portada del libro" class="card-img-top"
                              style="height: 300px; width: 200px; object-fit: cover; border-radius: 8px 8px 0 0;" />
                         <div class="card-body d-flex flex-column align-items-center">
-                            <h6 class="card-subtitle mb-3" style="color: #6CBF84; font-weight: 600;">
+                            <h6 class="card-subtitle mb-3">
                                 {{ $book->autor->name }} {{ $book->autor->lastname }}
                             </h6>
-                            <p class="card-title text-main fw-bold" style="font-size: 1rem;">
-                                {{ $book->title }}
-                            </p>
                         </div>
                     </div>
                 </div>
