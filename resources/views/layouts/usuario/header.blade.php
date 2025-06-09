@@ -1,6 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-light py-4" style="background-color: #6CBF84;">
     <div class="container-fluid d-flex justify-content-between align-items-center">
-        <a class="navbar-brand text-white fw-bold" href="{{ route('index.usuario') }}">Biblioteca</a>
+        <a class="navbar-brand fw-bold" href="{{ route('index.usuario') }}" style="color: white;">
+            <img src="{{ asset('favicon.png') }}" alt="Biblioteca" width="40" height="40">
+        </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTrabajador" aria-controls="navbarTrabajador" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
