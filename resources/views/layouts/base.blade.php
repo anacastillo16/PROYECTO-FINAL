@@ -5,10 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'TFG')</title>
 
-    {{-- Estilos de Bootstrap y tus scripts --}}
     @vite(['resources/js/app.js'])
-
-    {{-- Bootstrap Icons --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 <body class="d-flex flex-column min-vh-100 body-bg">
