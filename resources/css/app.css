@@ -39,16 +39,20 @@
 
 /* Links */
 .link-custom {
-    color: #5baa75;
-    text-decoration: none;
-    font-weight: 600; /* para que se note más */
+  color: #5baa75;
+  text-decoration: none;
+  font-weight: 600; /* para que se note más */
 }
 
 .link-custom:hover {
-    color: #98c772;
-    text-decoration: underline; /* opcional */
+  color: #98c772;
+  text-decoration: underline; /* opcional */
 }
 
+/* Títulos página */
+h2 {
+  color: #6CBF84;
+}
 
 /* Fondo y texto de los enlaces de paginación */
 .pagination .page-link {

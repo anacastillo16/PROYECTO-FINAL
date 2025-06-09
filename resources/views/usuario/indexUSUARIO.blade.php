@@ -11,32 +11,31 @@
     <div class="row justify-content-center mt-4">
         <div class="col-md-8">
             <form action="{{ route('index.usuario') }}" method="GET" class="d-flex">
-                <input type="text" name="search" class="form-control"
+                <input type="text" name="search" class="form-control m-2"
                     placeholder="Buscar por título, autor o editorial"
-                    style="border-color: #4C956C;" value="{{ request('search') }}" />
-                <button type="submit" class="btn" style="background-color: #4C956C; color: #F7FAF5; margin-left: 0.5rem;">Buscar</button>
-                <a href="{{ route('index.usuario') }}" class="btn" style="background-color: #406343; color: #F7FAF5; margin-left: 0.5rem;">Ver libros</a>
+                    style="border-color: #6CBF84;" value="{{ request('search') }}" />
+                <button type="submit" class="button-primary-custom m-2">Buscar</button>
+                <a href="{{ route('index.usuario') }}" class="button-primary-custom m-2">Ver libros</a>
             </form>
 
             @if ($noResults)
-                <div class="alert alert-warning text-center mt-3" role="alert"
-                    style="background-color: #FFF3CD; color: #856404; border-color: #FFEEBA;">
-                    No se encontró ningún libro.
+                <div class="alert-warning-custom text-center m-2" role="alert" style="color:#4A4A4A; background-color:#F7FAF5; padding: 0.5rem; border-radius: 4px;">
+                        No se encontró ningún libro.
                 </div>
             @endif
         </div>
     </div>
 
     <main class="container my-5">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2 class="mb-0" style="color: #406343;">Libros disponibles</h2>
+        <div class="d-flex justify-content-between align-items-center m-4">
+            <h2>Libros disponibles</h2>
         </div>
 
         <!-- Libros -->
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 justify-content-center">
             @foreach ($books as $book)
                 <div class="col d-flex justify-content-center">
-                    <div class="card shadow-sm text-center" style="width: 200px; border-radius: 0.5rem; border: 1px solid #4C956C;">
+                    <div class="card shadow-sm text-center" style="width: 200px;">
                         <div class="d-flex justify-content-center">
                             <img src="{{ $book->image }}" alt="{{ $book->title }}" class="card-img-top"
                                 style="height: 300px; width: 200px; object-fit: cover; border-bottom: 1px solid #4C956C;" />
@@ -46,8 +45,7 @@
                                 {{ $book->autor->name }} {{ $book->autor->lastname }}
                             </h6>
                             <a href="{{ route('usuario.books.show', $book->id) }}"
-                                class="btn btn-outline-success mt-auto"
-                                style="border-color: #4C956C; color: #4C956C;">
+                                class="button-secondary-custom">
                                 Ver detalles
                             </a>
                         </div>
