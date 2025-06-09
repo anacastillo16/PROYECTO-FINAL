@@ -8,8 +8,8 @@
         <nav class="navbar navbar-expand-lg py-4 body-bg" style="box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
             <div class="container-fluid d-flex justify-content-between align-items-center">
                 <!-- Título -->
-                <a href="{{ route('index.public') }}" class="navbar-brand fw-bold text-main" style="font-size: 1.5rem; text-decoration: none;">
-                    Biblioteca
+                 <a class="navbar-brand fw-bold" href="{{ route('index.public') }}" style="color: white;">
+                    <img src="{{ asset('favicon.png') }}" alt="Biblioteca" width="40" height="40">
                 </a>
 
                 <!-- Botones -->
