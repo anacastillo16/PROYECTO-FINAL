@@ -11,23 +11,24 @@
     <div class="row justify-content-center mt-4">
         <div class="col-md-8">
             <form action="{{ route('trabajador.autors.index') }}" method="GET" class="d-flex">
-                <input type="text" name="search" class="form-control" placeholder="Buscar por nombre..." value="{{ request('search') }}" style="border-color: #6CBF84;">
-                <button type="submit" class="button-primary-custom ms-2">Buscar</button>
-                <a href="{{ route('trabajador.autors.index') }}" class="button-primary-custom ms-2">Ver autores</a>
+                <input type="text" name="search" class="form-control m-2" placeholder="Buscar por nombre..." value="{{ request('search') }}" style="border-color: #6CBF84;">
+                <button type="submit" class="button-primary-custom m-2">Buscar</button>
+                <a href="{{ route('trabajador.autors.index') }}" class="button-primary-custom m-2">Ver autores</a>
             </form>
 
             @if(request()->has('search') && $autors->isEmpty())
-                <div class="alert alert-warning text-center mt-3" role="alert" style="background-color: #A8D689; color: #4A4A4A;">
+                <div class="alert-warning-custom text-center m-2" role="alert" 
+                     style="color:#4A4A4A; background-color:#F7FAF5; padding: 0.5rem; border-radius: 4px;">
                     No se encontró ningún autor con ese nombre.
                 </div>
             @endif
         </div>
     </div>
 
-    <main class="container my-5 body-bg">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2 class="mb-0 text-main">Autores disponibles</h2>
-            <button class="button-primary-custom" data-bs-toggle="modal" data-bs-target="#crearAutorModal">
+    <main class="container body-bg rounded py-4">
+        <div class="d-flex justify-content-center align-items-center m-4">
+            <h2>Autores disponibles</h2>
+            <button class="button-primary-custom m-4" data-bs-toggle="modal" data-bs-target="#crearAutorModal">
                 Crear autor
             </button>
         </div>
@@ -35,7 +36,7 @@
         <!-- Modal Crear Autor -->
         <div class="modal fade" id="crearAutorModal" tabindex="-1" aria-labelledby="crearAutorModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
-                <div class="modal-content" style="background-color: #D9E4DD;">
+                <div class="modal-content" style="background-color: #F7FAF5; border-radius: 8px;">
                     <div class="modal-header">
                         <h5 class="modal-title text-main" id="crearAutorModalLabel">Crear nuevo autor</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
@@ -114,9 +115,11 @@
         <div class="row justify-content-center">
             @foreach ($autors as $autor)
                 <div class="col-md-8 mb-3">
-                    <div class="card shadow-sm" style="background-color: #D9E4DD;">
+                    <div class="card shadow-sm" style="background-color: #F7FAF5; border-color: #A8D689;">
                         <div class="card-body d-flex justify-content-between align-items-center text-main">
-                            <h5 class="mb-0">{{ $autor->name }} {{ $autor->lastname }}</h5>
+                            <h5 class="mb-0 fw-bold" style="color: #406343;">
+                                {{ $autor->name }} {{ $autor->lastname }}
+                            </h5>
                             <a href="{{ route('trabajador.autors.show', $autor->id) }}" class="button-secondary-custom">
                                 Ver detalles
                             </a>
