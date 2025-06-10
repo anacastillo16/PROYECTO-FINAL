@@ -97,7 +97,7 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/home', function () {
     if (auth()->check()) {
         return redirect(
-            auth()->user()->rol === 'trabajador' 
+            auth()->user()->rol === 'admin' 
                 ? route('index.trabajador') 
                 : route('index.usuario')
         );

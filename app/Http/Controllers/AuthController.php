@@ -98,7 +98,7 @@ class AuthController extends Controller
             'lastname' => $request->lastname,
             'email' => $request->email,
             'password' => Hash::make($request->password), 
-            'rol' => 'user', 
+            'rol' => $request->rol, 
         ]);
 
         return redirect()->route('login')->with('success', 'Cuenta creada exitosamente. Ahora puedes iniciar sesión.');

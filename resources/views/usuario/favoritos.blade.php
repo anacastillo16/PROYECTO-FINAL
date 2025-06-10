@@ -24,8 +24,7 @@
                                      style="height: 300px; width: 200px; object-fit: cover; border-bottom: 1px solid #4C956C;">
                             </a>
                             <div class="card-body text-center" style="background-color: #F7FAF5;">
-                                <h5 class="card-title" style="color: #406343;">{{ $book->title }}</h5>
-                                <p class="card-text text-muted">{{ $book->autor->name }} {{ $book->autor->lastname }}</p>
+                                <h5 class="card-title" style="color: #406343;">{{ $book->autor->name }} {{ $book->autor->lastname }}</h5>
 
                                 <form method="POST" action="{{ route('favoritos.destroy', $book) }}">
                                     @csrf
