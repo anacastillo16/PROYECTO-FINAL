@@ -86,3 +86,18 @@ h2 {
 a {
   text-decoration: none;
 }
+
+/* Estilo puntuacion */
+.star-rating .star {
+    font-size: 2rem;
+    color: lightgray;
+    cursor: pointer;
+}
+
+.star-rating .star.selected {
+    color: gold;
+}
+
+.star-rating .star:hover:not(.selected) {
+    color: gold;
+}

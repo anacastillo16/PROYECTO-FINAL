@@ -7,6 +7,7 @@ use App\Http\Controllers\Trabajador\AuthorController;
 use App\Http\Controllers\Trabajador\EditorialController;
 use App\Http\Controllers\Usuario\UserController;
 use App\Http\Controllers\Usuario\FavoritoController;
+use App\Http\Controllers\Usuario\ReviewController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\UserMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -85,6 +86,11 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/usuario/mis-favoritos', [FavoritoController::class, 'index'])->name('favoritos.index');
         Route::post('usuario/favoritos/{book}', [FavoritoController::class, 'store'])->name('favoritos.store');
         Route::delete('usuario/favoritos/{book}', [FavoritoController::class, 'destroy'])->name('favoritos.destroy');
+
+        //REVIEWS
+        Route::post('usuario/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+        Route::put('usuario/reviews/{review}', [ReviewController::class, 'update'])->name('reviews.update');
+        Route::delete('usuario/reviews/{review}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
     });
 });
 
