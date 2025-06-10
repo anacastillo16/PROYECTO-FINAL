@@ -30,7 +30,7 @@
         </div>
     </div>
 
-    <main class="container body-bg rounded">
+    <main class="container body-bg rounded py-4">
         <div class="d-flex justify-content-center align-items-center m-4">
             <h2>Autores disponibles</h2>
         </div>
