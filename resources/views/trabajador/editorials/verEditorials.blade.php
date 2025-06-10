@@ -16,7 +16,7 @@
                     name="search"
                     class="form-control m-2"
                     placeholder="Buscar por nombre..."
-                    value="{{ request('search') }} " 
+                    value="{{ request('search') }}" 
                     style="border-color: #6CBF84;">
                     <button type="submit" class="button-primary-custom m-2">Buscar</button>
                     <a href="{{ route('trabajador.editorials.index') }}" class="button-primary-custom m-2">

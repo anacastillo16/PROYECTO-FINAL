@@ -11,7 +11,13 @@
     <div class="row justify-content-center mt-4">
         <div class="col-md-8">
             <form action="{{ route('trabajador.autors.index') }}" method="GET" class="d-flex">
-                <input type="text" name="search" class="form-control m-2" placeholder="Buscar por nombre..." value="{{ request('search') }}" style="border-color: #6CBF84;">
+                <input 
+                    type="text" 
+                    name="search" 
+                    class="form-control m-2" 
+                    placeholder="Buscar por nombre..." 
+                    value="{{ request('search') }}" 
+                    style="border-color: #6CBF84;">
                 <button type="submit" class="button-primary-custom m-2">Buscar</button>
                 <a href="{{ route('trabajador.autors.index') }}" class="button-primary-custom m-2">Ver autores</a>
             </form>

@@ -4,10 +4,6 @@
             <img src="{{ asset('favicon.ico') }}" alt="Biblioteca" width="40" height="40">
         </a>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTrabajador" aria-controls="navbarTrabajador" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
         <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarTrabajador">
             <ul class="navbar-nav me-auto mb-0 d-flex flex-row gap-3">
                 <li class="nav-item">
