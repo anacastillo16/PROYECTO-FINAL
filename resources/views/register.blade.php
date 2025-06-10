@@ -40,10 +40,12 @@
             <div class="mb-3">
                 <div class="input-group">
                     <input type="password" name="password" id="password" placeholder="Contraseña" required
-                        class="form-control @error('password') is-invalid @enderror">
-                    <button class="btn btn-outline-secondary toggle-password" type="button" data-target="password">
-                        <i class="bi bi-eye"></i>
-                    </button>
+                        class="form-control @error('password') is-invalid @enderror" style="padding-right: 2.5rem;">
+                    <span class="input-group-text bg-white border-start-0" style="cursor: pointer;">
+                        <button type="button" class="btn p-0 m-0 toggle-password" data-target="password" style="background: transparent; border: none;">
+                            <i class="bi bi-eye text-main"></i>
+                        </button>
+                    </span>
                 </div>
                 @error('password')
                     <div class="invalid-feedback d-block mt-1">{{ $message }}</div>
@@ -55,11 +57,15 @@
                 <div class="input-group">
                     <input type="password" id="password_confirmation" name="password_confirmation"
                         placeholder="Confirmar Contraseña" required
-                        class="form-control">
-                    <button class="btn btn-outline-secondary toggle-password" type="button"
-                        data-target="password_confirmation">
-                        <i class="bi bi-eye"></i>
-                    </button>
+                        class="form-control" style="padding-right: 2.5rem;">
+
+                    <span class="input-group-text bg-white border-start-0" style="cursor: pointer;">
+                        <button type="button" class="btn p-0 m-0 toggle-password"
+                        data-target="password_confirmation" style="background: transparent; border: none;">
+                            <i class="bi bi-eye text-main"></i>
+                        </button>
+                    </span>
+                    
                 </div>
             </div>
 
