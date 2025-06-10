@@ -96,7 +96,7 @@
             <div class="row justify-content-center">
                 @foreach ($editorials as $editorial)
                     <div class="col-md-8 mb-3">
-                        <div class="card shadow-sm" tyle="background-color: #F7FAF5; border-color: #A8D689;">
+                        <div class="card shadow-sm" style="background-color: #F7FAF5; border-color: #A8D689;">
                             <div class="card-body d-flex justify-content-between align-items-center text-main">
                                 <h5 class="mb-0 fw-bold" style="color: #406343;">{{ $editorial->name }}</h5>
                                 <a href="{{ route('trabajador.editorials.show', $editorial->id) }}" class="button-secondary-custom">
