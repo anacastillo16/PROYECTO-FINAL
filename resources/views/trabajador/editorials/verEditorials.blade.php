@@ -7,19 +7,17 @@
 @endsection
 
 @section('content')
-    <div class="body-bg min-vh-100 py-4">
-        <!-- Buscador -->
-        <div class="row justify-content-center mt-4">
-            <div class="col-md-8">
-                <form action="{{ route('trabajador.editorials.index') }}" method="GET" class="d-flex">
-                    <input
-                        type="text"
-                        name="search"
-                        class="form-control m-2"
-                        placeholder="Buscar por nombre..."
-                        value="{{ request('search') }} " 
-                        style="border-color: #6CBF84;"
-                    >
+    <!-- Buscador -->
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-8">
+            <form action="{{ route('trabajador.editorials.index') }}" method="GET" class="d-flex">
+                <input
+                    type="text"
+                    name="search"
+                    class="form-control m-2"
+                    placeholder="Buscar por nombre..."
+                    value="{{ request('search') }} " 
+                    style="border-color: #6CBF84;">
                     <button type="submit" class="button-primary-custom m-2">Buscar</button>
                     <a href="{{ route('trabajador.editorials.index') }}" class="button-primary-custom m-2">
                         Ver editoriales
@@ -27,7 +25,7 @@
                 </form>
                 @if ($noResults) 
                     <div class="alert-warning-custom text-center m-2" role="alert" 
-                     style="color:#4A4A4A; background-color:#F7FAF5; padding: 0.5rem; border-radius: 4px;">
+                        style="color:#4A4A4A; background-color:#F7FAF5; padding: 0.5rem; border-radius: 4px;">
                         No se encontró ninguna editorial con ese nombre.
                     </div>
                 @endif
