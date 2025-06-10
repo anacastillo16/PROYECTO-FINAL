@@ -16,7 +16,7 @@
                 <a href="{{ route('trabajador.autors.index') }}" class="button-primary-custom m-2">Ver autores</a>
             </form>
 
-            @if(request()->has('search') && $autors->isEmpty())
+            @if($noResults)
                 <div class="alert-warning-custom text-center m-2" role="alert" 
                      style="color:#4A4A4A; background-color:#F7FAF5; padding: 0.5rem; border-radius: 4px;">
                     No se encontró ningún autor con ese nombre.
