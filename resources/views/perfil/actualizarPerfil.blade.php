@@ -12,7 +12,9 @@
 
 @section('content')
 <main class="container my-5" style="max-width: 700px;">
-    <h2 class="mb-4 text-center fw-bold">Editar perfil</h2>
+    <div class="text-center mb-4">
+        <h2>Editar perfil</h2>
+    </div>
 
     <div class="row justify-content-center">
         <div class="col-12">
@@ -65,7 +67,7 @@
                             <span class="input-group-text bg-white border-start-0" style="cursor: pointer; border-color: #6CBF84;">
                                 <button type="button" class="btn p-0 m-0 toggle-password" data-target="password" style="color: #4A4A4A;">
                                     <i class="bi bi-eye"></i>
-                                </button> 
+                                </button>
                             </span>
                         </div>
                         @error('password')
@@ -83,7 +85,7 @@
                             <span class="input-group-text bg-white border-start-0" style="cursor: pointer; border-color: #6CBF84;">
                                 <button type="button" class="btn p-0 m-0 toggle-password" data-target="password_confirmation" style="color: #4A4A4A;">
                                     <i class="bi bi-eye"></i>
-                                </button> 
+                                </button>
                             </span>
                         </div>
                         @error('password_confirmation')
@@ -91,18 +93,19 @@
                         @enderror
                     </div>
 
-                    <div class="d-flex justify-content-between mt-4">
+                    {{-- Botones --}}
+                    <div class="d-flex flex-column flex-sm-row justify-content-between gap-2 mt-4">
                         <a href="{{ Auth::user()->rol === 'admin' ? route('index.trabajador') : route('index.usuario') }}"
-                            class="button-secondary-custom">Volver</a>
-                        <button type="submit" class="button-primary-custom">Guardar cambios</button>
+                            class="button-secondary-custom w-100">Volver</a>
+                        <button type="submit" class="button-primary-custom w-100">Guardar cambios</button>
                     </div>
                 </form>
 
                 <!-- Botón eliminar cuenta -->
                 <hr class="my-4">
-                <div class="text-end">
-                    <button class="btn" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal"
-                        style="background-color: #E26A6A; color: white;" >
+                <div class="text-center text-sm-end">
+                    <button class="btn w-100 w-sm-auto" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal"
+                        style="background-color: #E26A6A; color: white;">
                         Eliminar cuenta
                     </button>
                 </div>
@@ -112,27 +115,26 @@
                     aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content" style="background-color: #F7FAF5;">
-                            <div class="modal-header" >
+                            <div class="modal-header">
                                 <h5 class="modal-title text-main" id="confirmDeleteModalLabel">¿Estás segura?</h5>
-                                <button type="button" class="btn-close btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                             </div>
                             <div class="modal-body">
                                 Esta acción eliminará tu cuenta de forma permanente. ¿Deseas continuar?
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="button-secondary-custom" data-bs-dismiss="modal">Cancelar</button>
-                                <form action="{{ route('perfil.destroy') }}" method="POST" style="margin: 0;">
+                            <div class="modal-footer flex-column flex-sm-row justify-content-end gap-2">
+                                <button type="button" class="button-secondary-custom w-100 w-sm-auto" data-bs-dismiss="modal">Cancelar</button>
+                                <form action="{{ route('perfil.destroy') }}" method="POST" class="w-100 w-sm-auto">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn" style="background-color: #E26A6A;">
-                                       Eliminar
+                                    <button type="submit" class="btn w-100 w-sm-auto" style="background-color: #E26A6A;">
+                                        Eliminar
                                     </button>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

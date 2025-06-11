@@ -17,7 +17,7 @@
                 <p><strong>Dirección:</strong> {{ $editorial->address }}</p>
 
                 <!-- Botones -->
-                <div class="mt-4 d-flex gap-2">
+                <div class="mt-4 d-flex flex-wrap gap-2 align-items-stretch justify-content-start">
                     <a href="{{ route('trabajador.editorials.index') }}" class="button-primary-custom">
                         Ver editoriales
                     </a>

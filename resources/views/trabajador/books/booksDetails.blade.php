@@ -13,15 +13,15 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="card shadow" style="background-color: #F7FAF5;">
-                    <div class="row g-4 p-4">
+                    <div class="row g-4 p-4 d-flex flex-column flex-lg-row">
                         <!-- Imagen del libro -->
-                        <div class="col-md-4 text-center">
-                            <img src="{{ $book->image }}" alt="Portada del libro" class="img-fluid rounded"
-                                style="height: 400px; object-fit: cover;">
+                        <div class="col-lg-4 text-center">
+                            <img src="{{ $book->image }}" alt="Portada del libro" class="img-fluid rounded w-100"
+                                style="max-height: 400px; object-fit: cover;">
                         </div>
 
                         <!-- Detalles del libro -->
-                        <div class="col-md-8 text-main">
+                        <div class="col-lg-8 text-main mt-3">
                             <h3 class="mb-3 fw-bold" style="color: #406343;">{{ $book->title }}</h3>
 
                             <p><strong>ISBN:</strong> {{ $book->isbn }}</p>
@@ -37,7 +37,7 @@
                             <p>{{ $book->description }}</p>
 
                             <!-- Botones -->
-                            <div class="mt-4 d-flex gap-2 align-items-start">
+                            <div class="mt-4 d-flex flex-wrap gap-2 align-items-start">
                                 <button type="button" class="button-primary-custom" data-bs-toggle="modal"
                                     data-bs-target="#modificarLibroModal">
                                     Modificar libro

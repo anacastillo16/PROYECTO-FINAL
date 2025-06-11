@@ -27,18 +27,18 @@
     </div>
 
     <main class="container my-5">
-        <div class="d-flex justify-content-between align-items-center m-4">
+        <div class="d-flex justify-content-center align-items-center m-4">
             <h2>Libros disponibles</h2>
         </div>
 
         <!-- Libros -->
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 justify-content-center">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center">
             @foreach ($books as $book)
                 <div class="col d-flex justify-content-center">
                     <div class="card shadow-sm text-center" style="width: 200px;">
                         <div class="d-flex justify-content-center">
                             <img src="{{ $book->image }}" alt="{{ $book->title }}" class="card-img-top"
-                                style="height: 300px; width: 200px; object-fit: cover; border-bottom: 1px solid #4C956C;" />
+                                style="height: 300px; width: 200px; object-fit: cover;"/>
                         </div>
                         <div class="card-body d-flex flex-column align-items-center" style="background-color: #F7FAF5;">
                             <h6 class="card-subtitle mb-3 text-muted" style="color: #406343;">

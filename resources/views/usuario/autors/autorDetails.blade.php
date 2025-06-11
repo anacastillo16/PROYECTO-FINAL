@@ -32,7 +32,7 @@
                             </div>
 
                             <!-- Botones -->
-                            <div class="mt-4">
+                            <div class="mt-4 d-flex flex-wrap gap-2 align-items-stretch justify-content-start">
                                 <a href="{{ route('usuario.autors.index') }}" class="button-secondary-custom">
                                     Ver autores
                                 </a>

@@ -133,7 +133,7 @@
         </div>
 
         <!-- Libros -->
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center">
             @foreach ($books as $book)
                 <div class="col">
                     <div class="card shadow-sm text-center"
