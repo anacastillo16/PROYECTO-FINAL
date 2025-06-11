@@ -31,9 +31,9 @@
     </div>
 
     <main class="container my-5">
-        <div class="d-flex justify-content-between align-items-center mb-4 mt-4">
+        <div class="d-flex justify-content-center align-items-center m-4">
             <h2>Libros disponibles</h2>
-            <button class="button-primary-custom" data-bs-toggle="modal" data-bs-target="#crearLibroModal">
+            <button class="button-primary-custom m-4" data-bs-toggle="modal" data-bs-target="#crearLibroModal">
                 Crear libro
             </button>
         </div>
@@ -162,7 +162,7 @@
         </div>
     </main>
 
-@push('scripts')Add commentMore actions
+@push('scripts')
 <script>
     document.querySelectorAll('.toggle-password').forEach(button => {
         button.addEventListener('click', function () {
@@ -179,7 +179,7 @@
                 icon.classList.remove('bi-eye-slash');
                 icon.classList.add('bi-eye');
             }
-        });Add commentMore actions
+        });
     });
 </script>
 @endpush
