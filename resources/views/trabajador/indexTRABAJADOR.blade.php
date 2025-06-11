@@ -162,17 +162,3 @@
         </div>
     </main>
 @endsection
-
-@push('scripts')
-    @if ($errors->any())
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                var modalEl = document.getElementById('crearLibroModal');
-                if (modalEl) {
-                    var modal = new bootstrap.Modal(modalEl);
-                    modal.show();
-                }
-            });
-        </script>
-    @endif
-@endpush
