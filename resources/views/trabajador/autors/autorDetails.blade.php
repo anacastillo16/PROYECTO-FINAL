@@ -146,14 +146,9 @@
 
 @push('scripts')
     @if ($errors->any())
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var modalEl = document.getElementById('modificarAutorModal');
-            if (modalEl) {
-                var modal = new bootstrap.Modal(modalEl);
-                modal.show();
-            }
-        });
-    </script>
+        <script>
+            window.hasFormErrors = true;
+            window.errorModalId = 'modificarAutorModal';
+        </script>
     @endif
 @endpush

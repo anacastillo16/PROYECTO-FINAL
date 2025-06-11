@@ -113,14 +113,9 @@
 
 @push('scripts')
     @if ($errors->any())
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var modalEl = document.getElementById('crearEditorialModal');
-            if (modalEl) {
-                var modal = new bootstrap.Modal(modalEl);
-                modal.show();
-            }
-        });
-    </script>
+        <script>
+            window.hasFormErrors = true;
+            window.errorModalId = 'crearEditorialModal';
+        </script>
     @endif
 @endpush

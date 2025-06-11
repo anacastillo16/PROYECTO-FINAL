@@ -144,14 +144,9 @@
 
 @push('scripts')
     @if ($errors->any())
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var modalEl = document.getElementById('modificarLibroModal');
-            if (modalEl) {
-                var modal = new bootstrap.Modal(modalEl);
-                modal.show();
-            }
-        });
-    </script>
+        <script>
+            window.hasFormErrors = true;
+            window.errorModalId = 'modificarLibroModal';
+        </script>
     @endif
 @endpush
