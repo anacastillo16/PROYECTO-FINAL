@@ -1,3 +1,5 @@
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
 /* Fondo para toda la página o contenedor */
 .body-bg {
   background-color: #D9E4DD; 
