@@ -1,6 +1,4 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '../css/app.css';
-import 'bootstrap';
+import 'bootstrap';  // Solo JS de Bootstrap
 import * as bootstrap from 'bootstrap';
 
 window.bootstrap = bootstrap;
