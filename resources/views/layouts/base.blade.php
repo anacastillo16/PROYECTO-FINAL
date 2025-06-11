@@ -6,6 +6,7 @@
     <title>@yield('title', 'TFG')</title>
 
     @vite(['resources/js/app.js'])
+    @vite(['resources/css/app.css'])
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 <body class="d-flex flex-column min-vh-100 body-bg">
