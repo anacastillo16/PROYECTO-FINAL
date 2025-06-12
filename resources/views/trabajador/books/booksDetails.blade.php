@@ -16,8 +16,11 @@
                     <div class="row g-4 p-4 d-flex flex-column flex-lg-row">
                         <!-- Imagen del libro -->
                         <div class="col-lg-4 text-center">
-                            <img src="{{ $book->image }}" alt="Portada del libro" class="img-fluid rounded w-100"
-                                style="max-height: 400px; object-fit: cover;">
+                            <img src="{{ $book->image }}" 
+                                 alt="Portada del libro" 
+                                 class="card-img-top"
+                                 style="height: 300px; width: 200px; object-fit: cover; border-radius: 8px 8px 0 0;" 
+                                 onerror="this.onerror=null;this.src='{{ asset('default-book.png') }}';" />
                         </div>
 
                         <!-- Detalles del libro -->
