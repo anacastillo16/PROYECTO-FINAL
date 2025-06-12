@@ -37,8 +37,11 @@
                 <div class="col d-flex justify-content-center">
                     <div class="card shadow-sm text-center" style="width: 200px;">
                         <div class="d-flex justify-content-center">
-                            <img src="{{ $book->image }}" alt="{{ $book->title }}" class="card-img-top"
-                                style="height: 300px; width: 200px; object-fit: cover;"/>
+                            <img src="{{ $book->image }}" 
+                             alt="Portada del libro" 
+                             class="card-img-top"
+                             style="height: 300px; width: 200px; object-fit: cover; border-radius: 8px 8px 0 0;" 
+                             onerror="this.onerror=null;this.src='{{ asset('default-book.png') }}';" />
                         </div>
                         <div class="card-body d-flex flex-column align-items-center" style="background-color: #F7FAF5;">
                             <h6 class="card-subtitle mb-3 text-muted" style="color: #406343;">
