@@ -23,8 +23,11 @@
                     <div class="col d-flex justify-content-center">
                         <div class="card mb-4 shadow-sm" style="width: 200px;">
                             <a href="{{ route('usuario.books.show', $book->id) }}">
-                                <img src="{{ $book->image }}" class="card-img-top" alt="{{ $book->title }}"
-                                     style="height: 300px; width: 200px; object-fit: cover;">
+                                <img src="{{ $book->image }}" 
+                                     alt="Portada del libro" 
+                                     class="card-img-top"
+                                     style="height: 300px; width: 200px; object-fit: cover; border-radius: 8px 8px 0 0;" 
+                                     onerror="this.onerror=null;this.src='{{ asset('default-book.png') }}';" />
                             </a>
                             <div class="card-body text-center" style="background-color: #F7FAF5;">
                                 <h5 class="card-title text-main">{{ $book->autor->name }} {{ $book->autor->lastname }}</h5>
