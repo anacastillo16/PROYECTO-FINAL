@@ -102,31 +102,6 @@ class UserController extends Controller
         return view('usuario.editorials.editorialDetails', compact('editorial'));
     }
 
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
     /**
      * Show the form for editing the specified resource.
      */
@@ -174,8 +149,8 @@ class UserController extends Controller
     public function destroy()
     {
         $user = Auth::user();
-        Auth::logout(); // Cierra sesión
-        $user->delete(); // Elimina el usuario de la base de datos
+        Auth::logout(); 
+        $user->delete(); 
 
         return redirect()->route('login')->with('success', 'Tu cuenta ha sido eliminada correctamente.');
     }
